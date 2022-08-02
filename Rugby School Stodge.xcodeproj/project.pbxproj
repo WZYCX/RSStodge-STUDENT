@@ -1,0 +1,721 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9E9697272899161600A039D7 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697262899161600A039D7 /* Tests_iOS.swift */; };
+		9E9697292899161600A039D7 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697282899161600A039D7 /* Tests_iOSLaunchTests.swift */; };
+		9E9697332899161600A039D7 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697322899161600A039D7 /* Tests_macOS.swift */; };
+		9E9697352899161600A039D7 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */; };
+		9E9697362899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */; };
+		9E9697372899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */; };
+		9E9697382899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */; };
+		9E9697392899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */; };
+		9E96973A2899161600A039D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970E2899161300A039D7 /* ContentView.swift */; };
+		9E96973B2899161600A039D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970E2899161300A039D7 /* ContentView.swift */; };
+		9E96973C2899161600A039D7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970F2899161300A039D7 /* Persistence.swift */; };
+		9E96973D2899161600A039D7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970F2899161300A039D7 /* Persistence.swift */; };
+		9E96973E2899161600A039D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9697102899161500A039D7 /* Assets.xcassets */; };
+		9E96973F2899161600A039D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9697102899161500A039D7 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9E9697232899161600A039D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E9697062899161200A039D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E9697142899161600A039D7;
+			remoteInfo = "Rugby School Stodge (iOS)";
+		};
+		9E96972F2899161600A039D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E9697062899161200A039D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E96971A2899161600A039D7;
+			remoteInfo = "Rugby School Stodge (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9E96970C2899161300A039D7 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
+		9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rugby_School_StodgeApp.swift; sourceTree = "<group>"; };
+		9E96970E2899161300A039D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9E96970F2899161300A039D7 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		9E9697102899161500A039D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9E9697152899161600A039D7 /* Rugby School Stodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rugby School Stodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E96971B2899161600A039D7 /* Rugby School Stodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rugby School Stodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E96971D2899161600A039D7 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		9E9697222899161600A039D7 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9697262899161600A039D7 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		9E9697282899161600A039D7 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
+		9E96972E2899161600A039D7 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9697322899161600A039D7 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9E9697122899161600A039D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9697182899161600A039D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96971F2899161600A039D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96972B2899161600A039D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9E9697052899161200A039D7 = {
+			isa = PBXGroup;
+			children = (
+				9E96970A2899161300A039D7 /* Shared */,
+				9E96971C2899161600A039D7 /* macOS */,
+				9E9697252899161600A039D7 /* Tests iOS */,
+				9E9697312899161600A039D7 /* Tests macOS */,
+				9E9697162899161600A039D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9E96970A2899161300A039D7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */,
+				9E96970E2899161300A039D7 /* ContentView.swift */,
+				9E96970F2899161300A039D7 /* Persistence.swift */,
+				9E9697102899161500A039D7 /* Assets.xcassets */,
+				9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9E9697162899161600A039D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E9697152899161600A039D7 /* Rugby School Stodge.app */,
+				9E96971B2899161600A039D7 /* Rugby School Stodge.app */,
+				9E9697222899161600A039D7 /* Tests iOS.xctest */,
+				9E96972E2899161600A039D7 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9E96971C2899161600A039D7 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				9E96971D2899161600A039D7 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		9E9697252899161600A039D7 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9E9697262899161600A039D7 /* Tests_iOS.swift */,
+				9E9697282899161600A039D7 /* Tests_iOSLaunchTests.swift */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		9E9697312899161600A039D7 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				9E9697322899161600A039D7 /* Tests_macOS.swift */,
+				9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E9697142899161600A039D7 /* Rugby School Stodge (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9697422899161600A039D7 /* Build configuration list for PBXNativeTarget "Rugby School Stodge (iOS)" */;
+			buildPhases = (
+				9E9697112899161600A039D7 /* Sources */,
+				9E9697122899161600A039D7 /* Frameworks */,
+				9E9697132899161600A039D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rugby School Stodge (iOS)";
+			productName = "Rugby School Stodge (iOS)";
+			productReference = 9E9697152899161600A039D7 /* Rugby School Stodge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9E96971A2899161600A039D7 /* Rugby School Stodge (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9697452899161600A039D7 /* Build configuration list for PBXNativeTarget "Rugby School Stodge (macOS)" */;
+			buildPhases = (
+				9E9697172899161600A039D7 /* Sources */,
+				9E9697182899161600A039D7 /* Frameworks */,
+				9E9697192899161600A039D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rugby School Stodge (macOS)";
+			productName = "Rugby School Stodge (macOS)";
+			productReference = 9E96971B2899161600A039D7 /* Rugby School Stodge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9E9697212899161600A039D7 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9697482899161600A039D7 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				9E96971E2899161600A039D7 /* Sources */,
+				9E96971F2899161600A039D7 /* Frameworks */,
+				9E9697202899161600A039D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E9697242899161600A039D7 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = 9E9697222899161600A039D7 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		9E96972D2899161600A039D7 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E96974B2899161600A039D7 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				9E96972A2899161600A039D7 /* Sources */,
+				9E96972B2899161600A039D7 /* Frameworks */,
+				9E96972C2899161600A039D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E9697302899161600A039D7 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 9E96972E2899161600A039D7 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9E9697062899161200A039D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					9E9697142899161600A039D7 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					9E96971A2899161600A039D7 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					9E9697212899161600A039D7 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 9E9697142899161600A039D7;
+					};
+					9E96972D2899161600A039D7 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 9E96971A2899161600A039D7;
+					};
+				};
+			};
+			buildConfigurationList = 9E9697092899161200A039D7 /* Build configuration list for PBXProject "Rugby School Stodge" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9E9697052899161200A039D7;
+			productRefGroup = 9E9697162899161600A039D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E9697142899161600A039D7 /* Rugby School Stodge (iOS) */,
+				9E96971A2899161600A039D7 /* Rugby School Stodge (macOS) */,
+				9E9697212899161600A039D7 /* Tests iOS */,
+				9E96972D2899161600A039D7 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E9697132899161600A039D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E96973E2899161600A039D7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9697192899161600A039D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E96973F2899161600A039D7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9697202899161600A039D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96972C2899161600A039D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E9697112899161600A039D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9697362899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */,
+				9E96973C2899161600A039D7 /* Persistence.swift in Sources */,
+				9E9697382899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */,
+				9E96973A2899161600A039D7 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9697172899161600A039D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9697372899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */,
+				9E96973D2899161600A039D7 /* Persistence.swift in Sources */,
+				9E9697392899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */,
+				9E96973B2899161600A039D7 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96971E2899161600A039D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9697292899161600A039D7 /* Tests_iOSLaunchTests.swift in Sources */,
+				9E9697272899161600A039D7 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96972A2899161600A039D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9697352899161600A039D7 /* Tests_macOSLaunchTests.swift in Sources */,
+				9E9697332899161600A039D7 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9E9697242899161600A039D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E9697142899161600A039D7 /* Rugby School Stodge (iOS) */;
+			targetProxy = 9E9697232899161600A039D7 /* PBXContainerItemProxy */;
+		};
+		9E9697302899161600A039D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E96971A2899161600A039D7 /* Rugby School Stodge (macOS) */;
+			targetProxy = 9E96972F2899161600A039D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9E9697402899161600A039D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9E9697412899161600A039D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		9E9697432899161600A039D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Rugby-School-Stodge";
+				PRODUCT_NAME = "Rugby School Stodge";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9E9697442899161600A039D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Rugby-School-Stodge";
+				PRODUCT_NAME = "Rugby School Stodge";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9E9697462899161600A039D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Rugby-School-Stodge";
+				PRODUCT_NAME = "Rugby School Stodge";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9E9697472899161600A039D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Rugby-School-Stodge";
+				PRODUCT_NAME = "Rugby School Stodge";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9E9697492899161600A039D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Rugby School Stodge (iOS)";
+			};
+			name = Debug;
+		};
+		9E96974A2899161600A039D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Rugby School Stodge (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9E96974C2899161600A039D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Rugby School Stodge (macOS)";
+			};
+			name = Debug;
+		};
+		9E96974D2899161600A039D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "William-Chen.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Rugby School Stodge (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E9697092899161200A039D7 /* Build configuration list for PBXProject "Rugby School Stodge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9697402899161600A039D7 /* Debug */,
+				9E9697412899161600A039D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E9697422899161600A039D7 /* Build configuration list for PBXNativeTarget "Rugby School Stodge (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9697432899161600A039D7 /* Debug */,
+				9E9697442899161600A039D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E9697452899161600A039D7 /* Build configuration list for PBXNativeTarget "Rugby School Stodge (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9697462899161600A039D7 /* Debug */,
+				9E9697472899161600A039D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E9697482899161600A039D7 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9697492899161600A039D7 /* Debug */,
+				9E96974A2899161600A039D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E96974B2899161600A039D7 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E96974C2899161600A039D7 /* Debug */,
+				9E96974D2899161600A039D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9E96970C2899161300A039D7 /* Shared.xcdatamodel */,
+			);
+			currentVersion = 9E96970C2899161300A039D7 /* Shared.xcdatamodel */;
+			path = Rugby_School_Stodge.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9E9697062899161200A039D7 /* Project object */;
+}
