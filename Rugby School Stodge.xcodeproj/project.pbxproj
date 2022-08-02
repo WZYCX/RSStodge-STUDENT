@@ -62,6 +62,8 @@
 		9EC785B728992A400017E82E /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9EC785B628992A400017E82E /* FirebaseRemoteConfigSwift */; };
 		9EC785B928992A400017E82E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9EC785B828992A400017E82E /* FirebaseStorage */; };
 		9EC785BB28992A400017E82E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9EC785BA28992A400017E82E /* FirebaseStorageCombine-Community */; };
+		9EC785BE28992BB50017E82E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785BD28992BB50017E82E /* GoogleService-Info.plist */; };
+		9EC785BF28992BB50017E82E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785BD28992BB50017E82E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		9EC78570289921920017E82E /* MotherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Menu (INCOMPLETE).swift"; sourceTree = "<group>"; };
 		9EC78572289921920017E82E /* GeneralStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralStructs.swift; sourceTree = "<group>"; };
+		9EC785BC28992B6B0017E82E /* Rugby-School-Stodge--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Rugby-School-Stodge--iOS--Info.plist"; sourceTree = "<group>"; };
+		9EC785BD28992BB50017E82E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 		9E9697052899161200A039D7 = {
 			isa = PBXGroup;
 			children = (
+				9EC785BC28992B6B0017E82E /* Rugby-School-Stodge--iOS--Info.plist */,
 				9E96970A2899161300A039D7 /* Shared */,
 				9E96971C2899161600A039D7 /* macOS */,
 				9E9697252899161600A039D7 /* Tests iOS */,
@@ -190,6 +195,7 @@
 				9EC7856B289921920017E82E /* MAIN.swift */,
 				9E9697102899161500A039D7 /* Assets.xcassets */,
 				9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */,
+				9EC785BD28992BB50017E82E /* GoogleService-Info.plist */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -389,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E96973E2899161600A039D7 /* Assets.xcassets in Resources */,
+				9EC785BE28992BB50017E82E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E96973F2899161600A039D7 /* Assets.xcassets in Resources */,
+				9EC785BF28992BB50017E82E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +613,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Rugby-School-Stodge--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -634,6 +643,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Rugby-School-Stodge--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

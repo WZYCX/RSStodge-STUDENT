@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LogInPage: View {
     
-    @State public var Username: String = ""
+    @State public var UserID: String = ""
     @State public var Password: String = ""
     @EnvironmentObject var viewRouter: ViewRouter
     
@@ -19,13 +19,14 @@ struct LogInPage: View {
                     .padding(.top,160)
                 
                 RSStodgeLogo(textSize: 30, ImageSize: 80)
+                var UserID = ""
                 
-                Text(" \(Username)")
+                Text(" \(UserID)")
                     .font(.system(size: 70, weight: .bold))
                     .padding(.bottom,10)
                     .multilineTextAlignment(.center)
             
-                InputBox(Stuff: "Enter your User ID", matchingState: $Username, IsSecure: false)
+                InputBox(Stuff: "Enter your User ID", matchingState: $UserID, IsSecure: false)
             
                 InputBox(Stuff: "Enter your Password", matchingState: $Password, IsSecure: true)
                 

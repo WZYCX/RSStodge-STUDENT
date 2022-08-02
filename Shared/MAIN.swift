@@ -1,5 +1,9 @@
 import SwiftUI
 
+//firebase stuff
+import Firebase
+
+
 @main
 struct Stodge: App {
     
@@ -9,5 +13,9 @@ struct Stodge: App {
         WindowGroup {
             MotherView().environmentObject(viewRouter)
         }
+    }
+    
+    init(){
+        FirebaseApp.configure()
     }
 }
