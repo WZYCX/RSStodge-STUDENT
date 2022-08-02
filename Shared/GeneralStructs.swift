@@ -100,7 +100,7 @@ struct Header: View{
                     HeaderButton(ButtonName: .Basket, ButtonSymbol: "cart.circle.fill", LeadingorTrailing: .trailing)
             }
             
-        }.padding(.top,20)
+        }.padding(.top,50)
     }
 }
 
@@ -145,6 +145,7 @@ struct Footer: View{
             .frame(height: 100)
             .background(.red)
             .cornerRadius(10, corners:[.topLeft,.topRight])
+            
     }
 }
 
