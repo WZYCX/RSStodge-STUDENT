@@ -18,7 +18,7 @@ struct MenuPage: View{
                         LazyVStack(alignment:.center) {
                         
                             ForEach(1...10, id: \.self) { _ in // duplicate by 10
-                                ItemToSell(itemImage: "LiptonIceTea.jpg", itemName: "Lipton Ice Tea (Lemon)")
+                                ItemToSell(itemImage: "LiptonIceTea", itemName: "Lipton Ice Tea (Lemon)")
                             }.padding(10)
                         }
                     }

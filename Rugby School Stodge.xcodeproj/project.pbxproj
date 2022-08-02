@@ -124,16 +124,16 @@
 		9E96970A2899161300A039D7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */,
-				9EC7856F289921920017E82E /* Basket (INCOMPLETE).swift */,
-				9EC78572289921920017E82E /* GeneralStructs.swift */,
-				9EC7856C289921920017E82E /* LandingPage (INCOMPLETE).swift */,
-				9EC7856D289921920017E82E /* LoadingScreen.swift */,
 				9EC7856E289921920017E82E /* LogInPage.swift */,
-				9EC7856B289921920017E82E /* MAIN.swift */,
+				9EC7856C289921920017E82E /* LandingPage (INCOMPLETE).swift */,
 				9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */,
-				9EC78570289921920017E82E /* MotherView.swift */,
+				9EC7856F289921920017E82E /* Basket (INCOMPLETE).swift */,
 				9EC7856A289921920017E82E /* OrdersPage (INCOMPLETE) .swift */,
+				9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */,
+				9EC7856D289921920017E82E /* LoadingScreen.swift */,
+				9EC78572289921920017E82E /* GeneralStructs.swift */,
+				9EC78570289921920017E82E /* MotherView.swift */,
+				9EC7856B289921920017E82E /* MAIN.swift */,
 				9E9697102899161500A039D7 /* Assets.xcassets */,
 				9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */,
 			);

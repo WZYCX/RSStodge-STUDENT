@@ -33,7 +33,7 @@ struct RSStodgeLogo: View {
                     .font(.system(size: textSize, weight: .semibold))
             } .padding(.horizontal,5)
             
-            Image("RSLogo.jpg")
+            Image("RSLogo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: ImageSize)
