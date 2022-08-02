@@ -13,14 +13,28 @@
 		9E9697352899161600A039D7 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */; };
 		9E9697362899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */; };
 		9E9697372899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */; };
-		9E9697382899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */; };
-		9E9697392899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */; };
-		9E96973A2899161600A039D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970E2899161300A039D7 /* ContentView.swift */; };
-		9E96973B2899161600A039D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970E2899161300A039D7 /* ContentView.swift */; };
-		9E96973C2899161600A039D7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970F2899161300A039D7 /* Persistence.swift */; };
-		9E96973D2899161600A039D7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E96970F2899161300A039D7 /* Persistence.swift */; };
 		9E96973E2899161600A039D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9697102899161500A039D7 /* Assets.xcassets */; };
 		9E96973F2899161600A039D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9697102899161500A039D7 /* Assets.xcassets */; };
+		9EC785682899216F0017E82E /* AccountPage (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */; };
+		9EC785692899216F0017E82E /* AccountPage (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */; };
+		9EC78573289921920017E82E /* OrdersPage (INCOMPLETE) .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856A289921920017E82E /* OrdersPage (INCOMPLETE) .swift */; };
+		9EC78574289921920017E82E /* OrdersPage (INCOMPLETE) .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856A289921920017E82E /* OrdersPage (INCOMPLETE) .swift */; };
+		9EC78575289921920017E82E /* MAIN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856B289921920017E82E /* MAIN.swift */; };
+		9EC78576289921920017E82E /* MAIN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856B289921920017E82E /* MAIN.swift */; };
+		9EC78577289921920017E82E /* LandingPage (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856C289921920017E82E /* LandingPage (INCOMPLETE).swift */; };
+		9EC78578289921920017E82E /* LandingPage (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856C289921920017E82E /* LandingPage (INCOMPLETE).swift */; };
+		9EC78579289921920017E82E /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856D289921920017E82E /* LoadingScreen.swift */; };
+		9EC7857A289921920017E82E /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856D289921920017E82E /* LoadingScreen.swift */; };
+		9EC7857B289921920017E82E /* LogInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856E289921920017E82E /* LogInPage.swift */; };
+		9EC7857C289921920017E82E /* LogInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856E289921920017E82E /* LogInPage.swift */; };
+		9EC7857D289921920017E82E /* Basket (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856F289921920017E82E /* Basket (INCOMPLETE).swift */; };
+		9EC7857E289921920017E82E /* Basket (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7856F289921920017E82E /* Basket (INCOMPLETE).swift */; };
+		9EC7857F289921920017E82E /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC78570289921920017E82E /* MotherView.swift */; };
+		9EC78580289921920017E82E /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC78570289921920017E82E /* MotherView.swift */; };
+		9EC78581289921920017E82E /* Menu (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */; };
+		9EC78582289921920017E82E /* Menu (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */; };
+		9EC78583289921920017E82E /* GeneralStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC78572289921920017E82E /* GeneralStructs.swift */; };
+		9EC78584289921920017E82E /* GeneralStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC78572289921920017E82E /* GeneralStructs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +56,6 @@
 
 /* Begin PBXFileReference section */
 		9E96970C2899161300A039D7 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
-		9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rugby_School_StodgeApp.swift; sourceTree = "<group>"; };
-		9E96970E2899161300A039D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		9E96970F2899161300A039D7 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9E9697102899161500A039D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E9697152899161600A039D7 /* Rugby School Stodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rugby School Stodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E96971B2899161600A039D7 /* Rugby School Stodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rugby School Stodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +66,16 @@
 		9E96972E2899161600A039D7 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9697322899161600A039D7 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountPage (INCOMPLETE).swift"; sourceTree = "<group>"; };
+		9EC7856A289921920017E82E /* OrdersPage (INCOMPLETE) .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OrdersPage (INCOMPLETE) .swift"; sourceTree = "<group>"; };
+		9EC7856B289921920017E82E /* MAIN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAIN.swift; sourceTree = "<group>"; };
+		9EC7856C289921920017E82E /* LandingPage (INCOMPLETE).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandingPage (INCOMPLETE).swift"; sourceTree = "<group>"; };
+		9EC7856D289921920017E82E /* LoadingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		9EC7856E289921920017E82E /* LogInPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInPage.swift; sourceTree = "<group>"; };
+		9EC7856F289921920017E82E /* Basket (INCOMPLETE).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Basket (INCOMPLETE).swift"; sourceTree = "<group>"; };
+		9EC78570289921920017E82E /* MotherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
+		9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Menu (INCOMPLETE).swift"; sourceTree = "<group>"; };
+		9EC78572289921920017E82E /* GeneralStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralStructs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +124,16 @@
 		9E96970A2899161300A039D7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9E96970D2899161300A039D7 /* Rugby_School_StodgeApp.swift */,
-				9E96970E2899161300A039D7 /* ContentView.swift */,
-				9E96970F2899161300A039D7 /* Persistence.swift */,
+				9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */,
+				9EC7856F289921920017E82E /* Basket (INCOMPLETE).swift */,
+				9EC78572289921920017E82E /* GeneralStructs.swift */,
+				9EC7856C289921920017E82E /* LandingPage (INCOMPLETE).swift */,
+				9EC7856D289921920017E82E /* LoadingScreen.swift */,
+				9EC7856E289921920017E82E /* LogInPage.swift */,
+				9EC7856B289921920017E82E /* MAIN.swift */,
+				9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */,
+				9EC78570289921920017E82E /* MotherView.swift */,
+				9EC7856A289921920017E82E /* OrdersPage (INCOMPLETE) .swift */,
 				9E9697102899161500A039D7 /* Assets.xcassets */,
 				9E96970B2899161300A039D7 /* Rugby_School_Stodge.xcdatamodeld */,
 			);
@@ -307,10 +335,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC7857B289921920017E82E /* LogInPage.swift in Sources */,
+				9EC7857F289921920017E82E /* MotherView.swift in Sources */,
 				9E9697362899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */,
-				9E96973C2899161600A039D7 /* Persistence.swift in Sources */,
-				9E9697382899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */,
-				9E96973A2899161600A039D7 /* ContentView.swift in Sources */,
+				9EC78583289921920017E82E /* GeneralStructs.swift in Sources */,
+				9EC7857D289921920017E82E /* Basket (INCOMPLETE).swift in Sources */,
+				9EC785682899216F0017E82E /* AccountPage (INCOMPLETE).swift in Sources */,
+				9EC78581289921920017E82E /* Menu (INCOMPLETE).swift in Sources */,
+				9EC78577289921920017E82E /* LandingPage (INCOMPLETE).swift in Sources */,
+				9EC78573289921920017E82E /* OrdersPage (INCOMPLETE) .swift in Sources */,
+				9EC78575289921920017E82E /* MAIN.swift in Sources */,
+				9EC78579289921920017E82E /* LoadingScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,10 +353,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC7857C289921920017E82E /* LogInPage.swift in Sources */,
+				9EC78580289921920017E82E /* MotherView.swift in Sources */,
 				9E9697372899161600A039D7 /* Rugby_School_Stodge.xcdatamodeld in Sources */,
-				9E96973D2899161600A039D7 /* Persistence.swift in Sources */,
-				9E9697392899161600A039D7 /* Rugby_School_StodgeApp.swift in Sources */,
-				9E96973B2899161600A039D7 /* ContentView.swift in Sources */,
+				9EC78584289921920017E82E /* GeneralStructs.swift in Sources */,
+				9EC7857E289921920017E82E /* Basket (INCOMPLETE).swift in Sources */,
+				9EC785692899216F0017E82E /* AccountPage (INCOMPLETE).swift in Sources */,
+				9EC78582289921920017E82E /* Menu (INCOMPLETE).swift in Sources */,
+				9EC78578289921920017E82E /* LandingPage (INCOMPLETE).swift in Sources */,
+				9EC78574289921920017E82E /* OrdersPage (INCOMPLETE) .swift in Sources */,
+				9EC78576289921920017E82E /* MAIN.swift in Sources */,
+				9EC7857A289921920017E82E /* LoadingScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
