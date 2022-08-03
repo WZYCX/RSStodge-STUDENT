@@ -20,8 +20,6 @@ struct LogInPage: View {
                 
                 RSStodgeLogo(textSize: 30, ImageSize: 80)
                 
-                //adding user authentication
-                var UserID = ""
                 
                 Text(" \(UserID)")
                     .font(.system(size: 70, weight: .bold))
@@ -33,9 +31,17 @@ struct LogInPage: View {
                 InputBox(Stuff: "Enter your Password", matchingState: $Password, IsSecure: true)
                 
                 Button{
-                    print("Link to next page")
-                    withAnimation {
-                        viewRouter.currentPage = .Landing
+                    //added function to check if username and password are in db
+                    print("Checking...")
+                    let firestoreManager = FirestoreManager()
+                    if firestoreManager.checkAllUsers(CheckUserID: UserID, CheckPassword: Password) == true {
+                        print("Logging in...")
+                        //logs in to landing page
+                        withAnimation {
+                            viewRouter.currentPage = .Landing
+                        }
+                    } else {
+                        print("Invalid Username/Password")
                     }
 
                 }label: {
