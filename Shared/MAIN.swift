@@ -1,6 +1,4 @@
 import SwiftUI
-
-//firebase stuff
 import Firebase
 
 
@@ -9,6 +7,11 @@ struct Stodge: App {
     
     @StateObject var viewRouter = ViewRouter()
     
+    //firebase stuff
+    init(){
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             MotherView().environmentObject(viewRouter)
@@ -16,9 +19,7 @@ struct Stodge: App {
         }
     }
     
-    init(){
-        FirebaseApp.configure()
-    }
+
 }
 
 //for canvas to provide preview

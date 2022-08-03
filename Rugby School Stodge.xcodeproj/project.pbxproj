@@ -62,8 +62,6 @@
 		9EC785BB28992A400017E82E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9EC785BA28992A400017E82E /* FirebaseStorageCombine-Community */; };
 		9EC785BE28992BB50017E82E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785BD28992BB50017E82E /* GoogleService-Info.plist */; };
 		9EC785BF28992BB50017E82E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785BD28992BB50017E82E /* GoogleService-Info.plist */; };
-		9EC785C1289B06630017E82E /* Stodge.db in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785C0289B06630017E82E /* Stodge.db */; };
-		9EC785C2289B06630017E82E /* Stodge.db in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785C0289B06630017E82E /* Stodge.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +104,6 @@
 		9EC78572289921920017E82E /* GeneralStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralStructs.swift; sourceTree = "<group>"; };
 		9EC785BC28992B6B0017E82E /* Rugby-School-Stodge--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Rugby-School-Stodge--iOS--Info.plist"; sourceTree = "<group>"; };
 		9EC785BD28992BB50017E82E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9EC785C0289B06630017E82E /* Stodge.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Stodge.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +191,6 @@
 				9EC78570289921920017E82E /* MotherView.swift */,
 				9EC7856B289921920017E82E /* MAIN.swift */,
 				9E9697102899161500A039D7 /* Assets.xcassets */,
-				9EC785C0289B06630017E82E /* Stodge.db */,
 				9EC785BD28992BB50017E82E /* GoogleService-Info.plist */,
 			);
 			path = Shared;
@@ -396,7 +392,6 @@
 			files = (
 				9E96973E2899161600A039D7 /* Assets.xcassets in Resources */,
 				9EC785BE28992BB50017E82E /* GoogleService-Info.plist in Resources */,
-				9EC785C1289B06630017E82E /* Stodge.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +401,6 @@
 			files = (
 				9E96973F2899161600A039D7 /* Assets.xcassets in Resources */,
 				9EC785BF28992BB50017E82E /* GoogleService-Info.plist in Resources */,
-				9EC785C2289B06630017E82E /* Stodge.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
