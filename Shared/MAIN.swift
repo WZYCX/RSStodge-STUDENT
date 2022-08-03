@@ -6,6 +6,7 @@ import Firebase
 struct Stodge: App {
     
     @StateObject var viewRouter = ViewRouter()
+    @StateObject var firestoreManager = FirestoreManager() //allows FirestoreManager to be accessed by app
     
     //firebase stuff
     init(){
@@ -14,8 +15,11 @@ struct Stodge: App {
     
     var body: some Scene {
         WindowGroup {
-            MotherView().environmentObject(viewRouter)
+            MotherView()
+                .environmentObject(viewRouter)
+            
                 .ignoresSafeArea() // the home bar is causing 'safe area' below footer bar
+                .environmentObject(firestoreManager) //sets it as an environment object to be accessed by app
         }
     }
     
