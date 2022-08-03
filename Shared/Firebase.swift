@@ -24,7 +24,7 @@ class FirestoreManager: ObservableObject {
                                     print("Error getting documents: \(error)")
                             } else {
                                     for document in querySnapshot!.documents {
-                                            print("\(document.documentID): \(document.data())")
+                                            print("\(document.documentID): \(document.data())") // returns William Chen: ["Password": 1234, "name": William Chen, "UserID": 1234]
                                     }
                             }
             }
