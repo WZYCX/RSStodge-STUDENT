@@ -19,6 +19,7 @@ struct LogInPage: View {
                     .padding(.top,160)
                 
                 RSStodgeLogo(textSize: 30, ImageSize: 80)
+                
                 //adding user authentication
                 var UserID = ""
                 
