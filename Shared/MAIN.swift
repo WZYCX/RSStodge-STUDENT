@@ -25,11 +25,3 @@ struct Stodge: App {
     
 
 }
-
-//for canvas to provide preview
-struct LibraryViewPreview: PreviewProvider {
-    
-    static var previews: some View {
-        LogInPage()
-    }
-}
