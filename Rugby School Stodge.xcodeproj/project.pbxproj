@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E9697272899161600A039D7 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697262899161600A039D7 /* Tests_iOS.swift */; };
-		9E9697292899161600A039D7 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697282899161600A039D7 /* Tests_iOSLaunchTests.swift */; };
-		9E9697332899161600A039D7 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697322899161600A039D7 /* Tests_macOS.swift */; };
-		9E9697352899161600A039D7 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */; };
 		9E96973E2899161600A039D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9697102899161500A039D7 /* Assets.xcassets */; };
 		9E96973F2899161600A039D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9697102899161500A039D7 /* Assets.xcassets */; };
 		9EC785682899216F0017E82E /* AccountPage (INCOMPLETE).swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */; };
@@ -60,8 +56,6 @@
 		9EC785B728992A400017E82E /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9EC785B628992A400017E82E /* FirebaseRemoteConfigSwift */; };
 		9EC785B928992A400017E82E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9EC785B828992A400017E82E /* FirebaseStorage */; };
 		9EC785BB28992A400017E82E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9EC785BA28992A400017E82E /* FirebaseStorageCombine-Community */; };
-		9EC785BE28992BB50017E82E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785BD28992BB50017E82E /* GoogleService-Info.plist */; };
-		9EC785BF28992BB50017E82E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EC785BD28992BB50017E82E /* GoogleService-Info.plist */; };
 		9EC785C4289B201B0017E82E /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC785C3289B201B0017E82E /* Firebase.swift */; };
 		9EC785C5289B201B0017E82E /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC785C3289B201B0017E82E /* Firebase.swift */; };
 /* End PBXBuildFile section */
@@ -84,16 +78,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E3D7834289DC82C00066636 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E9697102899161500A039D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E9697152899161600A039D7 /* Rugby School Stodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rugby School Stodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E96971B2899161600A039D7 /* Rugby School Stodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rugby School Stodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E96971D2899161600A039D7 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		9E9697222899161600A039D7 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E9697262899161600A039D7 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		9E9697282899161600A039D7 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
 		9E96972E2899161600A039D7 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E9697322899161600A039D7 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		9EC785672899216F0017E82E /* AccountPage (INCOMPLETE).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountPage (INCOMPLETE).swift"; sourceTree = "<group>"; };
 		9EC7856A289921920017E82E /* OrdersPage (INCOMPLETE) .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OrdersPage (INCOMPLETE) .swift"; sourceTree = "<group>"; };
 		9EC7856B289921920017E82E /* MAIN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAIN.swift; sourceTree = "<group>"; };
@@ -105,7 +95,6 @@
 		9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Menu (INCOMPLETE).swift"; sourceTree = "<group>"; };
 		9EC78572289921920017E82E /* GeneralStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralStructs.swift; sourceTree = "<group>"; };
 		9EC785BC28992B6B0017E82E /* Rugby-School-Stodge--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Rugby-School-Stodge--iOS--Info.plist"; sourceTree = "<group>"; };
-		9EC785BD28992BB50017E82E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9EC785C3289B201B0017E82E /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,17 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				9EC785BC28992B6B0017E82E /* Rugby-School-Stodge--iOS--Info.plist */,
-				9E96970A2899161300A039D7 /* Shared */,
-				9E96971C2899161600A039D7 /* macOS */,
-				9E9697252899161600A039D7 /* Tests iOS */,
-				9E9697312899161600A039D7 /* Tests macOS */,
-				9E9697162899161600A039D7 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		9E96970A2899161300A039D7 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
 				9EC7856E289921920017E82E /* LogInPage.swift */,
 				9EC7856C289921920017E82E /* LandingPage (INCOMPLETE).swift */,
 				9EC78571289921920017E82E /* Menu (INCOMPLETE).swift */,
@@ -195,9 +173,9 @@
 				9EC7856B289921920017E82E /* MAIN.swift */,
 				9EC785C3289B201B0017E82E /* Firebase.swift */,
 				9E9697102899161500A039D7 /* Assets.xcassets */,
-				9EC785BD28992BB50017E82E /* GoogleService-Info.plist */,
+				9E3D7834289DC82C00066636 /* GoogleService-Info.plist */,
+				9E9697162899161600A039D7 /* Products */,
 			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		9E9697162899161600A039D7 /* Products */ = {
@@ -209,32 +187,6 @@
 				9E96972E2899161600A039D7 /* Tests macOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9E96971C2899161600A039D7 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				9E96971D2899161600A039D7 /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		9E9697252899161600A039D7 /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				9E9697262899161600A039D7 /* Tests_iOS.swift */,
-				9E9697282899161600A039D7 /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		9E9697312899161600A039D7 /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				9E9697322899161600A039D7 /* Tests_macOS.swift */,
-				9E9697342899161600A039D7 /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,7 +347,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E96973E2899161600A039D7 /* Assets.xcassets in Resources */,
-				9EC785BE28992BB50017E82E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +355,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E96973F2899161600A039D7 /* Assets.xcassets in Resources */,
-				9EC785BF28992BB50017E82E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,8 +415,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E9697292899161600A039D7 /* Tests_iOSLaunchTests.swift in Sources */,
-				9E9697272899161600A039D7 /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,8 +422,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E9697352899161600A039D7 /* Tests_macOSLaunchTests.swift in Sources */,
-				9E9697332899161600A039D7 /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
