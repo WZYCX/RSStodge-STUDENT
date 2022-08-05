@@ -121,20 +121,26 @@ struct FooterButton: View{
     
     var DirectTo: Page
     var ButtonSymbol: String
+    var Caption: String
     @EnvironmentObject var viewRouter: ViewRouter
     
     var body: some View{
-        Button{
-            print("Direct to right place")
-            withAnimation {
-                viewRouter.currentPage = DirectTo
+        VStack{
+            Button{
+                print("Direct to right place")
+                withAnimation {
+                    viewRouter.currentPage = DirectTo
+                }
+                
+            }label: {
+                Image(systemName: ButtonSymbol)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 40,height: 40)
+                    .foregroundColor(.white)
             }
-            
-        }label: {
-            Image(systemName: ButtonSymbol)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 40)
+            Text(Caption)
+                .font(.system(size: 12, weight: .bold))
                 .foregroundColor(.white)
         }
     }
@@ -145,13 +151,13 @@ struct Footer: View{
         
         HStack{
             Spacer()
-            FooterButton(DirectTo: .Landing, ButtonSymbol: "house.fill")
+            FooterButton(DirectTo: .Landing, ButtonSymbol: "house.fill", Caption: "Home")
             Spacer()
-            FooterButton(DirectTo: .Menu, ButtonSymbol: "takeoutbag.and.cup.and.straw.fill")
+            FooterButton(DirectTo: .Menu, ButtonSymbol: "takeoutbag.and.cup.and.straw.fill", Caption: "Menu")
             Spacer()
-            FooterButton(DirectTo: .Orders, ButtonSymbol: "list.bullet")
+            FooterButton(DirectTo: .Orders, ButtonSymbol: "list.bullet", Caption: "Orders")
             Spacer()
-            FooterButton(DirectTo: .Account, ButtonSymbol: "person.circle")
+            FooterButton(DirectTo: .Account, ButtonSymbol: "person.circle", Caption: "Account")
             Spacer()
             // to be completed
         }.frame(maxWidth:.infinity)
