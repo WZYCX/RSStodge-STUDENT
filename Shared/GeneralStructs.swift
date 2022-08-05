@@ -1,5 +1,5 @@
 import SwiftUI
-import Foundation
+import Firebase
 
 struct RoundedCorner: Shape { // for 'corners' parameter of cornerRadius
     
@@ -64,16 +64,29 @@ struct InputBox: View{
 
 struct HeaderButton: View{
     
-    var ButtonName: Page
     var ButtonSymbol: String
     var LeadingorTrailing: Edge.Set
+    var isLogOut: Bool
     @EnvironmentObject var viewRouter: ViewRouter
     
     var body: some View{
         
         Button{
             print("Direct to right place")
-            viewRouter.currentPage = ButtonName
+            if isLogOut == true {
+                do{
+                    print("Signing out...")
+                    try Auth.auth().signOut()
+                        
+                } catch let signOutError as NSError {
+                  print("Error signing out: %@", signOutError)
+                }
+                
+            } else {
+                withAnimation {
+                    viewRouter.currentPage = .Basket
+                }
+            }
             
         }label: {
             Image(systemName: ButtonSymbol)
@@ -95,9 +108,9 @@ struct Header: View{
         ZStack{
             RSStodgeLogo(textSize: 20, ImageSize: 50)
                 HStack{
-                    HeaderButton(ButtonName: .LogIn, ButtonSymbol: "arrow.left.to.line.circle.fill", LeadingorTrailing: .leading)
+                    HeaderButton(ButtonSymbol: "arrow.left.to.line.circle.fill", LeadingorTrailing: .leading,isLogOut: true)
                     Spacer()
-                    HeaderButton(ButtonName: .Basket, ButtonSymbol: "cart.circle.fill", LeadingorTrailing: .trailing)
+                    HeaderButton(ButtonSymbol: "cart.circle.fill", LeadingorTrailing: .trailing, isLogOut: false)
             }
             
         }.padding(.top,50)
