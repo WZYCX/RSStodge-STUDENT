@@ -38,7 +38,7 @@ struct OrdersPage: View{
                                 .cornerRadius(8,corners: [.topRight,.bottomRight])
                         }
                     }
-                    ScrollView{
+                    ScrollView(showsIndicators: false){
                     if (isActive == true){
                         ForEach(1...10, id:\.self){ _ in
                             Order(OrderID: 1234, OrderContents: ["Chicken Sandwich","Water","Appletiser"], OrderTime: "11:32", OrderCode: "XJ24")

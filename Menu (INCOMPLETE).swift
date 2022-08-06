@@ -14,7 +14,7 @@ struct MenuPage: View{
                     Text("Items")
                         .font(.system(size: 50, weight: .bold))
                     
-                    ScrollView { // list of items
+                    ScrollView(showsIndicators: false) { // list of items
                         LazyVStack(alignment:.center) {
                         
                             ForEach(1...10, id: \.self) { _ in // duplicate by 10

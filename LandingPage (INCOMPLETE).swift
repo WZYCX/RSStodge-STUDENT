@@ -8,7 +8,7 @@ struct LandingPage: View{
                     .ignoresSafeArea()
                 VStack{
                     Header()
-                    ScrollView{
+                    ScrollView(showsIndicators: false){
                         
                         VStack(alignment:.leading){
                             Text("Hi \nWilliam")//placeholder for "Hi \n\(name)"

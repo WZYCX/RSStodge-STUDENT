@@ -11,7 +11,7 @@ struct BasketPage: View{
                 VStack{
                 
                     Header()
-                    ScrollView { // list of items
+                    ScrollView(showsIndicators: false) { // list of items
                         Text("Basket")
                             .font(.system(size: 50, weight: .bold))
                         LazyVStack(alignment:.center) {
