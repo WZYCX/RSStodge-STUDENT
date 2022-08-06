@@ -20,7 +20,7 @@ struct LogInPage: View {
                     .font(.system(size: 20, weight: .bold))
                     .padding(.top,160)
                 
-                RSStodgeLogo(textSize: 30, ImageSize: 80)
+                RSStodgeLogo(textSize: 30, ImageSize: 120)
                     .padding(.bottom,120) // tp replace text this from below
                 
                 /*

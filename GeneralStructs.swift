@@ -31,6 +31,9 @@ struct RSStodgeLogo: View {
                     .font(.system(size: textSize, weight: .semibold))
                 Text("Stodge")
                     .font(.system(size: textSize, weight: .semibold))
+                Text("STUDENT")
+                    .font(.system(size: textSize, weight: .semibold))
+                    .foregroundColor(.blue)
             } .padding(.horizontal,5)
             
             Image("RSLogo")
