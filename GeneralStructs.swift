@@ -184,35 +184,29 @@ struct NewsStory: View{
                 .font(.system(size: 28, weight: .bold))
             Text("\(NewsBody)\n\n")
         }
+        
     }
 }
 
 struct NewsBox: View{
     
     var stories : [[String]] // [["Title1","Body1"] , ["Title2","Body2"]]
-    @State var more = false 
+    @State var more = false
     // more button to show ALL NEWS
     
     var body: some View{
-        VStack{
-            VStack{
-                VStack{
-                    LazyVStack(alignment: .leading){
-                        ForEach(0...2, id:\.self){ i in //only
-                            NewsStory(NewsTitle: stories[i][0], NewsBody: stories[i][1])
-                        }
-                    }
+        VStack(alignment: .leading){
+            ForEach(0...2, id:\.self){ i in //only
+                VStack(alignment:.leading){
+                    Rectangle()
+                        .frame(height:5)
+                        .foregroundColor(.gray.opacity(0.1))
+                    NewsStory(NewsTitle: stories[i][0], NewsBody: stories[i][1])
+                        .padding(.leading,20)
                 }
-                .padding()
-                Spacer()
             }
-            .frame(minWidth: 300, idealWidth: 300, maxWidth: 300, minHeight: 300, maxHeight: 1000)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(.red, lineWidth: 5)
-            )
         }
-    } 
+    }
 } 
 
 //Menu
