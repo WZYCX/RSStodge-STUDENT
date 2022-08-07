@@ -35,6 +35,9 @@ struct LogInPage: View {
                 InputBox(Stuff: "Enter your Email", matchingState: $Email, IsSecure: false)
             
                 InputBox(Stuff: "Enter your Password", matchingState: $Password, IsSecure: true)
+                    .onSubmit {
+                        print("Authenticating")
+                        LogIn()
                 
                 Button{
                     LogIn()
