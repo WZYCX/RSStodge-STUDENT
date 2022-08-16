@@ -171,6 +171,19 @@ struct Footer: View{
     }
 }
 
+//set the StdButton(text: "") to the standard
+func StdButton(_ text: String) -> some View {
+        let text = Text(text)
+        .frame(width: 200, height: 50)
+        .background(.red)
+        .font(.system(size: 20, weight: .bold))
+        .foregroundColor(.white)
+        .cornerRadius(10)
+        .padding()
+        
+        return text
+}
+
 //landing
 
 struct NewsStory: View{

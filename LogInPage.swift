@@ -38,6 +38,7 @@ struct LogInPage: View {
                     .onSubmit {
                         print("Authenticating")
                         LogIn()
+                    }
                 
                 Button{
                     LogIn()
@@ -57,12 +58,7 @@ struct LogInPage: View {
                     */
                     
                 }label: {
-                    Text("Confirm")
-                        .frame(width: 200, height: 50)
-                        .background(.red)
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    StdButton("Confirm")
                 }
                 
                 //switches to landing page if user is logged in
@@ -98,7 +94,7 @@ struct LogInPage: View {
 }
 
 //for canvas to provide preview
-struct LibraryViewPreview: PreviewProvider {
+struct LogInPreview: PreviewProvider {
     
     static var previews: some View {
         LogInPage()
