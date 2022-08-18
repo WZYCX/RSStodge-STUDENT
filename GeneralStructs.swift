@@ -179,7 +179,6 @@ func StdButton(_ text: String) -> some View {
         .font(.system(size: 20, weight: .bold))
         .foregroundColor(.white)
         .cornerRadius(10)
-        .padding()
         
         return text
 }
