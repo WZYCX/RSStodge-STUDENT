@@ -309,16 +309,6 @@ struct UserDetails: View{
 
 //basket
 
-var Basket = [[]]
-
-struct BasketItem: Identifiable{
-    let id: Int
-    let name: String
-    let desc: String
-    let cost: Float
-    let category: String
-    var Count: Int
-}
 
 struct ItemInBasket: View{
     
@@ -386,6 +376,32 @@ struct ItemInBasket: View{
                     }.padding(.leading,20)
                 }
                 
+            }
+        }
+    }
+}
+
+
+struct ItemtoConfirm: View{
+    
+    var itemImage: String
+    var itemName: String
+    @State var cost: Double
+    @State var count: Int
+    
+    var body: some View{
+        HStack{//Item placeholder
+            Image(itemImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100)
+            VStack{
+                Text(itemName)
+                    .font(.system(size: 18, weight: .medium))
+                HStack{
+                    Text("Quantity: \(count)")
+                    Text("Cost: £\(String(format: "%.2f", cost))")
+                }
             }
         }
     }
