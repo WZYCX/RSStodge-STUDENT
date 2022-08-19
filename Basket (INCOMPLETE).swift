@@ -3,7 +3,8 @@ import SwiftUI
 struct BasketPage: View{
     
     @EnvironmentObject var viewRouter: ViewRouter
-    @State var Cost = 0.00
+    @State var cost = 0.00
+    @State var showPopover = false
     
     var body: some View{
             ZStack{
@@ -16,7 +17,7 @@ struct BasketPage: View{
                         Text("Basket")
                             .font(.system(size: 50, weight: .bold))
                         LazyVStack(alignment:.center) {
-                            ForEach(1...3, id: \.self) { _ in
+                            ForEach(1...5, id: \.self) { _ in
                             ItemInBasket(itemImage: "LiptonIceTea", itemName: "Lipton Ice Tea (Lemon)", count: 1)
                             }
                         }
@@ -25,13 +26,14 @@ struct BasketPage: View{
                     
                     //Displays total cost of products
                     //Cost = String(format: "%.2f", Cost) // round to two d.p. as a price
-                    Text("Total: £\(String(format: "%.2f", Cost))")
+                    Text("Total: £\(String(format: "%.2f", cost))")
                         .font(.system(size: 20, weight: .semibold))
                         .multilineTextAlignment(.leading)
                     
                     //order button that leads to confirmation popup
                     Button{
                         print("Order")
+                        showPopover.toggle()
                     }label:{
                         StdButton("Order")
                     }
@@ -40,7 +42,12 @@ struct BasketPage: View{
                         .frame(height:20)
                     
                     Footer()
-                }
+            }
+            
+        }
+        .popover(isPresented: $showPopover) {
+            
+           ConfirmOrder()
             
         }
     }
@@ -52,6 +59,62 @@ struct BasketPage: View{
 
 // if an item's quantity is zero, remove item
 
+
+//var CurrentBasket: [[BasketItem]]
+
+struct BasketItem: Identifiable{
+    let id: Int
+    let name: String
+    let desc: String
+    let cost: Float
+    let category: String
+    var Count: Int
+}
+
+class Basket: ObservableObject {
+    
+    @Published var currentBasket: [[BasketItem]] = [[]]
+    
+}
+
+
+struct ConfirmOrder: View{
+    
+    @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
+    @State var cost = 0.00
+
+    var body: some View {
+        //Title
+        Text("Order Summary")
+            .font(.system(size: 40, weight: .bold))
+            .padding(.top,40)
+        
+        
+        //Items in current basket
+        ScrollView(showsIndicators: false){
+            ForEach(1...6, id: \.self) { _ in
+                ItemtoConfirm(itemImage: "LiptonIceTea", itemName: "Lipton Ice Tea (Lemon)", cost: 0.00, count: 1)
+            }
+        }
+        
+        
+        Text("Total: £\(String(format: "%.2f", cost))")
+            .font(.system(size: 20, weight: .semibold))
+            .multilineTextAlignment(.leading)
+        
+        //order button that leads to confirmation popup
+        Button{
+            print("Confirm")
+            presentationMode.wrappedValue.dismiss() // closes the popover
+        }label:{
+            StdButton("Confirm")
+        }
+        
+        Spacer()
+            .frame(height:20)
+        
+    }
+}
 
 struct BasketPreview: PreviewProvider {
     
