@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>72833453409-3q50786j12r8df4lk5s1105i9il90sm1.apps.googleusercontent.com</string>
+	<string>447754022478-sromrs1ihvj75k35f5d9gbgup3n5dom2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.72833453409-3q50786j12r8df4lk5s1105i9il90sm1</string>
+	<string>com.googleusercontent.apps.447754022478-sromrs1ihvj75k35f5d9gbgup3n5dom2</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDWEmegZLzf-JRd_lALVpCwUaSk_7uuUlM</string>
+	<string>AIzaSyCC1fxJBXrz9IqDkuY997f4d0RrNq9EuMs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>72833453409</string>
+	<string>447754022478</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>William-Chen.Rugby-School-Stodge</string>
 	<key>PROJECT_ID</key>
-	<string>test-ca2ff</string>
+	<string>rs-stodge-student</string>
 	<key>STORAGE_BUCKET</key>
-	<string>test-ca2ff.appspot.com</string>
+	<string>rs-stodge-student.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:72833453409:ios:6aba205c9637eed8b3c920</string>
-	<key>DATABASE_URL</key>
-	<string>https://test-ca2ff-default-rtdb.europe-west1.firebasedatabase.app</string>
+	<string>1:447754022478:ios:757637765e54952acd1d1f</string>
 </dict>
 </plist>
