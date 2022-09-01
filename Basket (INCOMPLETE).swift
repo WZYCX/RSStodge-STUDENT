@@ -85,34 +85,39 @@ struct ConfirmOrder: View{
 
     var body: some View {
         //Title
-        Text("Order Summary")
-            .font(.system(size: 40, weight: .bold))
-            .padding(.top,40)
-        
-        
-        //Items in current basket
-        ScrollView(showsIndicators: false){
-            ForEach(1...6, id: \.self) { _ in
-                ItemtoConfirm(itemImage: "LiptonIceTea", itemName: "Lipton Ice Tea (Lemon)", cost: 0.00, count: 1)
+        VStack{
+            Color.white
+            
+            ZStack{
+                Text("Order Summary")
+                    .font(.system(size: 40, weight: .bold))
+                    .padding(.top,40)
+                
+                
+                //Items in current basket
+                ScrollView(showsIndicators: false){
+                    ForEach(1...6, id: \.self) { _ in
+                        ItemtoConfirm(itemImage: "LiptonIceTea", itemName: "Lipton Ice Tea (Lemon)", cost: 0.00, count: 1)
+                    }
+                }
+                
+                
+                Text("Total: £\(String(format: "%.2f", cost))")
+                    .font(.system(size: 20, weight: .semibold))
+                    .multilineTextAlignment(.leading)
+                
+                //order button that leads to confirmation popup
+                Button{
+                    print("Confirm")
+                    presentationMode.wrappedValue.dismiss() // closes the popover
+                }label:{
+                    StdButton("Confirm")
+                }
+                
+                Spacer()
+                    .frame(height:20)
             }
         }
-        
-        
-        Text("Total: £\(String(format: "%.2f", cost))")
-            .font(.system(size: 20, weight: .semibold))
-            .multilineTextAlignment(.leading)
-        
-        //order button that leads to confirmation popup
-        Button{
-            print("Confirm")
-            presentationMode.wrappedValue.dismiss() // closes the popover
-        }label:{
-            StdButton("Confirm")
-        }
-        
-        Spacer()
-            .frame(height:20)
-        
     }
 }
 
