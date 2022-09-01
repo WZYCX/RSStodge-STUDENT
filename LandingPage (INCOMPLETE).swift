@@ -7,6 +7,7 @@ struct LandingPage: View{
                 Color.white
                     .ignoresSafeArea()
                 VStack{
+                    //ScrollView(showsIndicators: false){
                     Header()
                     ScrollView(showsIndicators: false){
                         
