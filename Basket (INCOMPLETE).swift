@@ -47,7 +47,7 @@ struct BasketPage: View{
         }
         .popover(isPresented: $showPopover) {
             
-           ConfirmOrder()
+           ConfirmOrder().colorScheme(.light)
             
         }
     }
@@ -87,6 +87,7 @@ struct ConfirmOrder: View{
         //Title
         ZStack{
             Color.white
+                .ignoresSafeArea()
             
             VStack{
                 Text("Order Summary")
