@@ -85,10 +85,10 @@ struct ConfirmOrder: View{
 
     var body: some View {
         //Title
-        VStack{
+        ZStack{
             Color.white
             
-            ZStack{
+            VStack{
                 Text("Order Summary")
                     .font(.system(size: 40, weight: .bold))
                     .padding(.top,40)
