@@ -16,8 +16,10 @@ struct OrdersPage: View{
                     
                     HStack{
                         Button{ //Active
-                            isActive = true
-                            print("Active")
+                            withAnimation{
+                                isActive = true
+                                print("Active")
+                            }
                         }label: {
                             Text("Active")
                                 .frame(width: 80, height: 30) 
@@ -27,8 +29,10 @@ struct OrdersPage: View{
                                 .cornerRadius(8,corners: [.topLeft,.bottomLeft])
                         }
                         Button{ //Past
-                            isActive = false
-                            print("Past")
+                            withAnimation{
+                                isActive = false
+                                print("Past")
+                            }
                         }label: {
                             Text("Past")
                                 .frame(width: 80, height: 30) 
