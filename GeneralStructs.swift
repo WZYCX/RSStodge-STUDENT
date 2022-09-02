@@ -95,7 +95,7 @@ struct HeaderButton: View{
             Image(systemName: ButtonSymbol)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 60)
+                .frame(width: 50)
         }
         .padding(LeadingorTrailing,10)
         .padding(.top,5)
@@ -109,7 +109,7 @@ struct Header: View{
     var body: some View{
         
         ZStack{
-            RSStodgeLogo(textSize: 20, ImageSize: 50)
+            RSStodgeLogo(textSize: 16, ImageSize: 40)
                 HStack{
                     HeaderButton(ButtonSymbol: "arrow.left.to.line.circle.fill", LeadingorTrailing: .leading,isLogOut: true)
                     Spacer()
@@ -139,11 +139,11 @@ struct FooterButton: View{
                 Image(systemName: ButtonSymbol)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 40,height: 40)
+                    .frame(width: 30)
                     .foregroundColor(.white)
             }
             Text(Caption)
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: 10, weight: .bold))
                 .foregroundColor(.white)
         }
     }
@@ -154,6 +154,7 @@ struct Footer: View{
         
         HStack{
             Spacer()
+               .frame(width:40)
             FooterButton(DirectTo: .Landing, ButtonSymbol: "house.fill", Caption: "Home")
             Spacer()
             FooterButton(DirectTo: .Menu, ButtonSymbol: "takeoutbag.and.cup.and.straw.fill", Caption: "Menu")
@@ -162,11 +163,12 @@ struct Footer: View{
             Spacer()
             FooterButton(DirectTo: .Account, ButtonSymbol: "person.circle", Caption: "Account")
             Spacer()
+                .frame(width:40)
             // to be completed
         }.frame(maxWidth:.infinity)
             .frame(height: 100)
             .background(.red)
-            .cornerRadius(10, corners:[.topLeft,.topRight])
+            //.cornerRadius(10, corners:[.topLeft,.topRight])
             
     }
 }
@@ -222,20 +224,83 @@ struct NewsBox: View{
 } 
 
 //Menu
+func DropdownButton(_ text: String) -> some View {
+        let text = Text(text)
+        .font(.system(size: 20, weight: .semibold))
+        .foregroundColor(.black)
+        
+        return text
+}
+
+class Categories: ObservableObject {
+    
+    @Published var CurrentCategory = "All"
+    
+}
+
+struct Dropdown: View{
+    
+    @EnvironmentObject var category: Categories
+    
+    var body: some View{
+        VStack{
+            Divider()
+            
+            Button{
+                category.CurrentCategory = "All"
+            }label:{
+                DropdownButton("All")
+            }
+            Divider()
+            
+            Button{
+                category.CurrentCategory = "Snacks"
+            }label:{
+                DropdownButton("Snacks")
+            }
+            Divider()
+            
+            Button{
+                category.CurrentCategory = "Drinks"
+            }label:{
+                DropdownButton("Drinks")
+            }
+            Divider()
+            
+            Button{
+                category.CurrentCategory = "Hot food"
+            }label:{
+                DropdownButton("Hot food")
+            }
+            Divider()
+        }
+    }
+}
+
+struct Item: Identifiable{
+    let id: Int
+    let name: String
+    let desc: String
+    let cost: String
+    let category: String
+    let image: String
+    var Count: Int
+}
+
 struct ItemToSell: View{
     
-    var itemImage: String
-    var itemName: String
+    var item: Item
     
     var body: some View{
         HStack{//Item placeholder
-            Image(itemImage)
+            Image(item.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 100)
             VStack{             
-                Text(itemName)
+                Text(item.name)
                     .font(.system(size: 18, weight: .medium))
+                
                 Button{
                     print("You like Lipton Ice Tea and LGBTea!!! WOOOOO!!!") // add to basket (To Be Completed...)
                 }label:{
