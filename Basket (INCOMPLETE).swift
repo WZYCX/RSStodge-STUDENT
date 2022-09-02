@@ -62,18 +62,10 @@ struct BasketPage: View{
 
 //var CurrentBasket: [[BasketItem]]
 
-struct BasketItem: Identifiable{
-    let id: Int
-    let name: String
-    let desc: String
-    let cost: Float
-    let category: String
-    var Count: Int
-}
 
 class Basket: ObservableObject {
     
-    @Published var currentBasket: [[BasketItem]] = [[]]
+    @Published var currentBasket: [[Item]] = [[]]
     
 }
 
