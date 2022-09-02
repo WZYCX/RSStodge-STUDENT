@@ -21,7 +21,7 @@ struct LogInPage: View {
                     .padding(.top,160)
                 
                 RSStodgeLogo(textSize: 30, ImageSize: 120)
-                    .padding(.bottom,120) // tp replace text this from below
+                    .padding(.bottom,50) // to replace text this from below
                 
                 /*
                 Text(" \(UserID)")
