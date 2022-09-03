@@ -6,6 +6,7 @@ struct LogInPage: View {
     //@State private var UserID: String = ""
     @State private var Email: String = ""
     @State private var Password: String = ""
+    @State var Loginfail = false
     @EnvironmentObject var viewRouter: ViewRouter
     
     var body: some View {
@@ -14,7 +15,6 @@ struct LogInPage: View {
                 .ignoresSafeArea()
             //BackgroundView(topColor: .cyan, bottomColor: .red)
             VStack {
-                //Header(amountOfPadding: 100, textSize: 30, ImageSize: 80,IsLogIn: true)
                 
                 Text("Welcome ")
                     .font(.system(size: 20, weight: .bold))
@@ -33,7 +33,11 @@ struct LogInPage: View {
                  */
                  
                 InputBox(Stuff: "Enter your Email", matchingState: $Email, IsSecure: false)
-            
+                    .onSubmit {
+                        print("Authenticating")
+                        LogIn()
+                    }
+                
                 InputBox(Stuff: "Enter your Password", matchingState: $Password, IsSecure: true)
                     .onSubmit {
                         print("Authenticating")
@@ -56,7 +60,6 @@ struct LogInPage: View {
                         print("Invalid Username/Password")
                     }
                     */
-                    
                 }label: {
                     StdButton("Confirm")
                 }
@@ -73,10 +76,13 @@ struct LogInPage: View {
                             viewRouter.currentPage = .LogIn
                         }
                     }
-                    
                 }
                 }
             
+                if Loginfail == true{
+                    Text("Username/Password is incorrect")
+                        .foregroundColor(.red)
+                }
                 Spacer()
             }
         }
@@ -85,12 +91,11 @@ struct LogInPage: View {
     func LogIn() {
         Auth.auth().signIn(withEmail: Email, password: Password) { result, error in
             if error != nil{
+                Loginfail = true
                 print(error!.localizedDescription)
             }
-            
         }
     }
-    
 }
 
 //for canvas to provide preview
