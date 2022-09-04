@@ -1,8 +1,8 @@
 import SwiftUI
 import Firebase
 
-struct RoundedCorner: Shape { // for 'corners' parameter of cornerRadius
-    
+// for 'corners' parameter of cornerRadius
+struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
     
@@ -12,7 +12,8 @@ struct RoundedCorner: Shape { // for 'corners' parameter of cornerRadius
     }
 }
 
-extension View { // for 'corners' parameter of cornerRadius
+// for 'corners' parameter of cornerRadius
+extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
@@ -224,6 +225,7 @@ struct NewsBox: View{
 } 
 
 //Menu
+
 func DropdownButton(_ text: String) -> some View {
         let text = Text(text)
         .font(.system(size: 20, weight: .semibold))
@@ -278,7 +280,7 @@ struct Dropdown: View{
 }
 
 struct Item: Identifiable{
-    let id: Int
+    let id: String
     let name: String
     let desc: String
     let cost: String
@@ -287,22 +289,32 @@ struct Item: Identifiable{
     var Count: Int
 }
 
+//how the item is displayed when shown on MenuPage
 struct ItemToSell: View{
     
     var item: Item
     
     var body: some View{
         HStack{//Item placeholder
-            Image(item.image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100)
+            
+            //load item's image
+            AsyncImage(url: URL(string: item.image)!, content: { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100,height:100)
+            }, placeholder: {
+                ProgressView()
+            })
+            
+            Spacer()
+            //details + add button
             VStack{             
                 Text(item.name)
                     .font(.system(size: 18, weight: .medium))
                 
                 Button{
-                    print("You like Lipton Ice Tea and LGBTea!!! WOOOOO!!!") // add to basket (To Be Completed...)
+                    //add item to basket
                 }label:{
                     Text("Add")
                         .frame(width: 80, height: 20)
@@ -310,8 +322,10 @@ struct ItemToSell: View{
                         .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.white)
                         .cornerRadius(10)
+                    
                 }
             }
+            Spacer()
         }
     }
 }

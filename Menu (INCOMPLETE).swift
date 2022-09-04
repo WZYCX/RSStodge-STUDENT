@@ -4,6 +4,7 @@ import Firebase
 struct MenuPage: View{
     
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var allitems: AllItems
     @State var showCategories = false
     @State var Category = Categories()
     
@@ -17,7 +18,7 @@ struct MenuPage: View{
                 Text("Menu")
                     .font(.system(size: 50, weight: .bold))
                 
-                //  filter/show categories button/dropdown menu
+                //  dropdown menu
                 HStack{
                     Spacer()
                     
@@ -42,11 +43,12 @@ struct MenuPage: View{
                 }
                     
                 ScrollView(showsIndicators: false) { // list of items
-                    LazyVStack(alignment:.center) {
+                    VStack(alignment:.leading) {
                     
-                        ForEach(1...10, id: \.self) { _ in // duplicate by 10
-                            ItemToSell(item: <#T##Item#>)
+                        ForEach(allitems.all) { product in
+                            ItemToSell(item: product)
                         }.padding(10)
+                        
                     }
                 }
                 Spacer()
@@ -55,7 +57,31 @@ struct MenuPage: View{
         }
     }
 }
+
+class AllItems: ObservableObject {
+    
+    @Published var all: [Item] = []
+    
+    init() {
+        //fetchAllUsers() //remove at a later date
+        fetchAllItems() //remove at a later date
+    }
+    
+    func fetchAllItems() {
+        let db = Firestore.firestore() // links to firestore
+        
+        db.collection("Items").addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error!)")
+                return
+            }
+            self.all = documents.map { Item(id: $0.documentID, name: "\($0["Name"]!)" , desc: "\($0["Description"]!)", cost: "\($0["Sales Price"]!)", category: "\($0["Category"]!)", image: "\($0["Image"]!)", Count: 0) // $0 is first parameter
                 
+            }
+            print("All: \(self.all)")
+        }
+    }
+}
 
 //for canvas to provide preview
 struct MenuPreview: PreviewProvider {
