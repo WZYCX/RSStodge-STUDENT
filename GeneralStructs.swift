@@ -297,40 +297,47 @@ struct Item: Identifiable{
 //how the item is displayed when shown on MenuPage
 struct ItemToSell: View{
     
+    @EnvironmentObject var Category: Categories
     var item: Item
     
     var body: some View{
-        HStack{//Item placeholder
+        
+        //checking if item matches category selected
+        if Category.CurrentCategory == "All" || item.category == Category.CurrentCategory{
             
-            //load item's image
-            AsyncImage(url: URL(string: item.image)!, content: { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100,height:100)
-            }, placeholder: {
-                ProgressView()
-            })
             
-            Spacer()
-            //details + add button
-            VStack{             
-                Text(item.name)
-                    .font(.system(size: 18, weight: .medium))
+            HStack{//Item placeholder
                 
-                Button{
-                    //add item to basket
-                }label:{
-                    Text("Add")
-                        .frame(width: 80, height: 20)
-                        .background(.red)
-                        .font(.system(size: 15, weight: .bold))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                //load item's image
+                AsyncImage(url: URL(string: item.image)!, content: { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100,height:100)
+                }, placeholder: {
+                    ProgressView()
+                })
+                
+                Spacer()
+                //details + add button
+                VStack{
+                    Text(item.name)
+                        .font(.system(size: 18, weight: .medium))
                     
+                    Button{
+                        //add item to basket
+                    }label:{
+                        Text("Add")
+                            .frame(width: 80, height: 20)
+                            .background(.red)
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                        
+                    }
                 }
+                Spacer()
             }
-            Spacer()
         }
     }
 }
