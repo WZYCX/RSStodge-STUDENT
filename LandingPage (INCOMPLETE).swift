@@ -16,6 +16,9 @@ struct LandingPage: View{
                                 .frame(width: 300, height: 150, alignment: .leading)
                                 .font(.system(size: 50, weight: .semibold))
                         }
+                        
+                        MenuStack()
+                        
                         VStack{
                             Text("News")
                                 .font(.system(size: 60, weight: .semibold))

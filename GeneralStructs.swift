@@ -188,6 +188,78 @@ func StdButton(_ text: String) -> some View {
 
 //landing
 
+struct MenuStackButton: View{
+    
+    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var category: Categories
+    @EnvironmentObject var showcategory: showCategories
+    var textsize: CGFloat
+    var text: String
+    var image: String
+    
+    var body: some View{
+        Button{
+            // sets the category to whatever
+            category.CurrentCategory = text
+            print(category.CurrentCategory)
+            // directs to Menu Page
+            viewRouter.currentPage = .Menu
+            // the dropdown menu hiding
+                showcategory.show = false
+
+        }label: {
+            ZStack{
+                //Color.red
+                Color.gray
+                  .opacity(0.2)
+                HStack{
+                    Spacer()
+                        .frame(width:10)
+                    VStack{
+                        Spacer()
+                        Text(text)
+                            .font(.system(size: textsize,weight: .semibold))
+                            .foregroundColor(.black)
+                        Spacer()
+                            .frame(height: 10)
+                    }
+                    Spacer()
+                    Image(image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 60,height: 60)
+                    Spacer()
+                        .frame(width:10)
+                    
+                }
+            }
+            .frame(width: 160,height: 80)
+            .cornerRadius(10)
+        }
+    }
+}
+
+struct MenuStack: View{
+    
+    var body: some View{
+        VStack{
+            HStack(alignment: .center){
+                
+                MenuStackButton(textsize: 16, text: "All", image: "both")
+                //
+                MenuStackButton(textsize: 16, text: "Snacks", image: "crisps")
+            }
+                
+            HStack(alignment: .center){
+                MenuStackButton(textsize: 16, text: "Drinks", image: "coladrink")
+                //
+                MenuStackButton(textsize: 16, text: "Hot Food", image: "burgercolour")
+            }
+            
+        }
+    }
+}
+
 struct NewsStory: View{
     
     var NewsTitle: String
