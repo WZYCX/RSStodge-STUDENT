@@ -22,8 +22,12 @@ struct MenuPage: View{
                     Spacer()
                     
                     Button{
-                        withAnimation{ // animates the dropdown menu
-                            showCategories.toggle()
+                        if showcategory.show == false {
+                            withAnimation{ // animates the dropdown menu opening
+                                showcategory.show.toggle()
+                            }
+                        } else {
+                            showcategory.show.toggle() // no animation hiding
                         }
                         
                     }label:{

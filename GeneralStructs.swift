@@ -226,18 +226,43 @@ struct NewsBox: View{
 
 //Menu
 
-func DropdownButton(_ text: String) -> some View {
-        let text = Text(text)
-        .font(.system(size: 20, weight: .semibold))
-        .foregroundColor(.black)
-        
-        return text
+struct DropdownButton: View {
+    
+    @EnvironmentObject var category: Categories
+    @EnvironmentObject var showcategory: showCategories
+    var text: String
+    
+    var body: some View{
+        ZStack{
+            if text == category.CurrentCategory {
+                Color.red
+                    .opacity(0.9)
+            }else{
+                Color.white
+            }
+            Button{
+                category.CurrentCategory = text
+                print(category.CurrentCategory)
+                //withAnimation{ // animates the dropdown menu
+                    showcategory.show = false
+                //}
+            }label:{
+                Text(text)
+                    .font(.system(size: 20, weight: .semibold))
+                    .foregroundColor(.black)
+            }
+        }
+    }
 }
 
 class Categories: ObservableObject {
     
     @Published var CurrentCategory = "All"
     
+}
+
+class showCategories: ObservableObject{
+    @Published var show = false
 }
 
 struct Dropdown: View{
@@ -247,33 +272,13 @@ struct Dropdown: View{
     var body: some View{
         VStack{
             Divider()
-            
-            Button{
-                category.CurrentCategory = "All"
-            }label:{
-                DropdownButton("All")
-            }
+            DropdownButton(text: "All")
             Divider()
-            
-            Button{
-                category.CurrentCategory = "Snacks"
-            }label:{
-                DropdownButton("Snacks")
-            }
+            DropdownButton(text: "Snacks")
             Divider()
-            
-            Button{
-                category.CurrentCategory = "Drinks"
-            }label:{
-                DropdownButton("Drinks")
-            }
+            DropdownButton(text: "Drinks")
             Divider()
-            
-            Button{
-                category.CurrentCategory = "Hot food"
-            }label:{
-                DropdownButton("Hot food")
-            }
+            DropdownButton(text: "Hot Food")
             Divider()
         }
     }
