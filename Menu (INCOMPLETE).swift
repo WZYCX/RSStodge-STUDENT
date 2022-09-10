@@ -79,7 +79,7 @@ class AllItems: ObservableObject {
                 print("Error fetching documents: \(error!)")
                 return
             }
-            self.all = documents.map { Item(id: $0.documentID, name: "\($0["Name"]!)" , desc: "\($0["Description"]!)", cost: "\($0["Sales Price"]!)", category: "\($0["Category"]!)", image: "\($0["Image"]!)", Count: 0) // $0 is first parameter
+            self.all = documents.map { Item(id: $0.documentID, name: "\($0["Name"]!)" , desc: "\($0["Description"]!)", cost: "\($0["Sales Price"]!)", category: "\($0["Category"]!)", image: "\($0["Image"]!)", count: 0) // $0 is first parameter
                 
             }
             print("All: \(self.all)")

@@ -3,6 +3,7 @@ import SwiftUI
 struct BasketPage: View{
     
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var basket: Basket
     @State var cost = 0.00
     @State var showPopover = false
     
@@ -16,9 +17,10 @@ struct BasketPage: View{
                     ScrollView(showsIndicators: false) { // list of items
                         Text("Basket")
                             .font(.system(size: 50, weight: .bold))
+                        
                         LazyVStack(alignment:.center) {
-                            ForEach(1...5, id: \.self) { _ in
-                            ItemInBasket(itemImage: "LiptonIceTea", itemName: "Lipton Ice Tea (Lemon)", count: 1)
+                            ForEach(basket.currentBasket) { product in
+                                ItemInBasket(item: product)
                             }
                         }
                     }
@@ -33,6 +35,7 @@ struct BasketPage: View{
                     //order button that leads to confirmation popup
                     Button{
                         print("Order")
+                        print(basket.currentBasket)
                         showPopover.toggle()
                     }label:{
                         StdButton("Order")
@@ -65,13 +68,14 @@ struct BasketPage: View{
 
 class Basket: ObservableObject {
     
-    @Published var currentBasket: [[Item]] = [[]]
+    @Published var currentBasket: [Item] = []
     
 }
 
 
 struct ConfirmOrder: View{
     
+    @EnvironmentObject var basket: Basket
     @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
     @State var cost = 0.00
 
@@ -89,8 +93,8 @@ struct ConfirmOrder: View{
                 
                 //Items in current basket
                 ScrollView(showsIndicators: false){
-                    ForEach(1...6, id: \.self) { _ in
-                        ItemtoConfirm(itemImage: "LiptonIceTea", itemName: "Lipton Ice Tea (Lemon)", cost: 0.00, count: 1)
+                    ForEach(basket.currentBasket) { product in
+                        ItemtoConfirm(item:product)
                     }
                 }
                 

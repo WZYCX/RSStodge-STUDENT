@@ -363,14 +363,15 @@ struct Item: Identifiable{
     let cost: String
     let category: String
     let image: String
-    var Count: Int
+    var count: Int
 }
 
 //how the item is displayed when shown on MenuPage
 struct ItemToSell: View{
     
     @EnvironmentObject var Category: Categories
-    var item: Item
+    @EnvironmentObject var basket: Basket
+    @State var item: Item
     
     var body: some View{
         
@@ -397,7 +398,12 @@ struct ItemToSell: View{
                         .font(.system(size: 18, weight: .medium))
                     
                     Button{
+                        print("Added item")
+                        item.count+=1
+                        basket.currentBasket.append(item)
+                        print(basket.currentBasket)
                         //add item to basket
+                        //you can add two of the same into 'basket'
                     }label:{
                         Text("Add")
                             .frame(width: 80, height: 20)
@@ -475,30 +481,38 @@ struct UserDetails: View{
 
 struct ItemInBasket: View{
     
-    var itemImage: String
-    var itemName: String
-    @State var count: Int
+    
+    @State var item: Item
+    @EnvironmentObject var basket: Basket
     
     var body: some View{
         HStack{//Item placeholder
-            Image(itemImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100)
+            AsyncImage(url: URL(string: item.image)!, content: { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100,height:100)
+            }, placeholder: {
+                ProgressView()
+            })
+            
             VStack{             
-                Text(itemName)
+                Text(item.name)
                     .font(.system(size: 18, weight: .medium))
                 HStack{
                     // add or remove counter
                     HStack{ 
                         Button{
-                            if (count > 1) {
-                                count = count - 1
+                            if (item.count > 1) {
+                                item.count = item.count - 1
                                 print("Removed one")
                                 
-                            } else if (count == 1){
+                            } else if (item.count == 1){
                                 print("Item removed")
-                                count = 0
+                                item.count = 0
+                                basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
+                                print(basket.currentBasket)
+                                
                             }
                         }label:{
                             Text("-")
@@ -508,7 +522,7 @@ struct ItemInBasket: View{
                                 .foregroundColor(.white)
                                 .cornerRadius(10,corners: [.topLeft,.bottomLeft])
                         }
-                        Text(String(count))
+                        Text(String(item.count))
                             .frame(width: 30, height: 25)
                             .background(.white)
                             .font(.system(size: 15, weight: .bold))
@@ -516,7 +530,7 @@ struct ItemInBasket: View{
                             .border(.black, width: 1)
                         Button{
                             print("Added one") 
-                            count = count + 1
+                            item.count = item.count + 1 //does not save the change to the basket but locally (resets when clicking off page)
                         }label:{
                             Text("+")
                                 .frame(width: 30, height: 25) 
@@ -529,6 +543,9 @@ struct ItemInBasket: View{
                     //Remove Item button
                     Button{
                         print("Item Removed") // remove from basket (To Be Completed...)
+                        item.count = 0
+                        basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
+                        print(basket.currentBasket)
                     }label:{
                         Image(systemName: "trash.fill")
                             .frame(width: 80, height: 25)
@@ -547,23 +564,26 @@ struct ItemInBasket: View{
 
 struct ItemtoConfirm: View{
     
-    var itemImage: String
-    var itemName: String
-    @State var cost: Double
-    @State var count: Int
+    @State var item: Item
     
     var body: some View{
         HStack{//Item placeholder
-            Image(itemImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100)
+            
+            AsyncImage(url: URL(string: item.image)!, content: { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100,height:100)
+            }, placeholder: {
+                ProgressView()
+            })
+            
             VStack{
-                Text(itemName)
+                Text(item.name)
                     .font(.system(size: 18, weight: .medium))
                 HStack{
-                    Text("Quantity: \(count)")
-                    Text("Cost: £\(String(format: "%.2f", cost))")
+                    Text("Quantity: \(item.count)")
+                    Text("Cost: £\(String(format: "%.2f", item.cost))")
                 }
             }
         }
