@@ -14,13 +14,20 @@ struct BasketPage: View{
                 VStack{
                 
                     Header()
+                    Text("Basket")
+                        .font(.system(size: 50, weight: .bold))
+                    
                     ScrollView(showsIndicators: false) { // list of items
-                        Text("Basket")
-                            .font(.system(size: 50, weight: .bold))
-                        
-                        LazyVStack(alignment:.center) {
-                            ForEach(basket.currentBasket) { product in
-                                ItemInBasket(item: product)
+                        if (basket.currentBasket.isEmpty){
+                            Spacer()
+                                .frame(height: 200)
+                            Text("Basket is Empty...")
+                                .font(.system(size: 16, weight: .medium))
+                        }else{
+                            LazyVStack(alignment:.center) {
+                                ForEach(basket.currentBasket) { product in
+                                    ItemInBasket(item: product)
+                                }
                             }
                         }
                     }
@@ -36,7 +43,11 @@ struct BasketPage: View{
                     Button{
                         print("Order")
                         print(basket.currentBasket)
-                        showPopover.toggle()
+                        if (basket.currentBasket.isEmpty == false){
+                            showPopover.toggle()
+                        }else{
+                            print("Basket is Empty...")
+                        }
                     }label:{
                         StdButton("Order")
                     }
