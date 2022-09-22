@@ -10,6 +10,7 @@ struct Stodge: App {
     @StateObject var allitems = AllItems() // Menu+Basket
     @StateObject var category = Categories() // Landing+Menu
     @StateObject var showcategory = showCategories() // Landing+Menu
+    @StateObject var basket = Basket() // Basket+Menu
     
     //firebase stuff
     init(){
@@ -25,6 +26,7 @@ struct Stodge: App {
                 .environmentObject(allitems)
                 .environmentObject(category)
                 .environmentObject(showcategory)
+                .environmentObject(basket)
         }
     }
     
