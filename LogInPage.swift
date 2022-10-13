@@ -46,20 +46,6 @@ struct LogInPage: View {
                 
                 Button{
                     LogIn()
-                    /*
-                    //added function to check if username and password are in db
-                    print("Checking...")
-                    let firestoreManager = FirestoreManager()
-                    if firestoreManager.checkAllUsers(CheckUserID: UserID, CheckPassword: Password) == true {
-                        print("Logging in...")
-                        //logs in to landing page
-                        withAnimation {
-                            viewRouter.currentPage = .Landing
-                        }
-                    } else {
-                        print("Invalid Username/Password")
-                    }
-                    */
                 }label: {
                     StdButton("Confirm")
                 }
