@@ -10,9 +10,8 @@ struct AccountPage: View{
                     Header()
                     Text("Account")
                         .font(.system(size: 50, weight: .bold))
-                        .padding(40)
                     Spacer()
-                    UserDetails(ProfileImage: "WCProfilePic", Name: "William Chen", Year: "LXX", StodgeID: "1234")
+                    UserDetails(ProfileImage:"https://firebasestorage.googleapis.com/v0/b/rs-stodge-student.appspot.com/o/WCProfilePic.jpg?alt=media&token=697be2b3-5b9c-4f9d-b248-77bbba9dd775", Name: "William Chen", Year: "LXX", StodgeID: "1234")
                     Spacer()
                     Footer()
                 }

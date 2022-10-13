@@ -462,11 +462,15 @@ struct UserDetails: View{
     
     var body: some View{
         VStack{
-            Image(ProfileImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 200)
-                .padding(.bottom,50)
+            AsyncImage(url: URL(string: ProfileImage)!, content: { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200)
+            }, placeholder: {
+                ProgressView()
+            })
+            .padding(.bottom,40)
             VStack(alignment: .leading){
                 Text("Name: \(Name)")
                 Text("Year: \(Year)")
