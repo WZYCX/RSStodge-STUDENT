@@ -69,12 +69,12 @@ struct BasketPage: View{
 
 //-- Local Store of Current Basket --
 //
-//[ Cost, [item1, quantity1] , [item2, quantity2] , [item3, quantity3] ]
+//[ Item, Item2, Item3 ]
 
 // if an item's quantity is zero, remove item
 
 
-//var CurrentBasket: [[BasketItem]]
+//var CurrentBasket: [Item]
 
 
 class Basket: ObservableObject {
