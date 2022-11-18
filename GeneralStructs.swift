@@ -420,32 +420,71 @@ struct ItemToSell: View{
     }
 }
 
-struct Order: View{
+struct Order: Identifiable{
+    let id: String
+    let number: String
+    let items: String// [Item] but not for now
+    let time: String // change to NSDate() or something that is actually the time
+    let code: String
+}
+
+class Orders: ObservableObject {
+    @Published var all : [Order] = []
     
-    //var active: String
-    var OrderID: Int
-    var OrderContents: Array<String>
-    var OrderTime: String // change to NSDate() or something that is actually the time
-    var OrderCode: String
+    init() {
+        fetchAllOrders()
+    }
+    
+    func fetchAllOrders() {
+        let db = Firestore.firestore() // links to firestore
+        
+        db.collection("Orders").addSnapshotListener { querySnapshot, error in //listens for changes in 'Items'
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error!)")
+                return
+            }
+            
+            self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: "\($0["Items"]!)", time: "\($0["Order Time"]!)", code: "\($0["Order Code"]!)") // $0 is first parameter
+            }
+            print("All: \(self.all)")
+        }
+    }
+}
+
+struct OrderInView: View{
+    var Order: Order
     
     var body: some View{
         VStack(alignment: .leading){
+            
+            
             HStack{
-                Text("Order #\(String(OrderID))")
-                    .font(.system(size: 24, weight: .bold))
                 Spacer()
+                    .frame(width:20)
+                HStack{
+                    HStack{
+                        Text("Order #\(String(Order.id))")
+                            .font(.system(size: 24, weight: .bold))
+                        Spacer()
+                        
+                        Text("\(Order.time)")
+                    }
+                    
+                    VStack(alignment:.leading){
+                        //ForEach(Order.items){ item in
+                        //  Text("\(item)")
+                        //}
+                    }
+                }
+                .padding()
+                .border(.black, width: 3)
                 
-                Text("\(OrderTime)")
+                Spacer()
+                    .frame(width:20)
             }
-            VStack(alignment:.leading){
-            ForEach(OrderContents, id:\.self){ i in
-                Text("\(i)")
-            }
-            }
+            
+            
         }
-        .padding()
-        .border(.black, width: 3)
-        
     }
 }
 
