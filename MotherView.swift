@@ -1,8 +1,6 @@
-import SwiftUI
+import SwiftUI //importing library for GUI features
 
-import Foundation
-
-enum Page {
+enum Page { // creating the possible values for Page
     case LogIn
     case Landing
     case Menu
@@ -14,18 +12,17 @@ enum Page {
 
 class ViewRouter: ObservableObject {
     
-    //@Published var currentPage: Page = .LogIn
-    @Published var currentPage: Page = .LogIn
+    @Published var currentPage: Page = .LogIn //setting the original value of currentPage and as an @published value so that all structs are updated when its value changes
     
 }
 
 
 struct MotherView: View{
     
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var viewRouter: ViewRouter // sharing ViewRouter so that this struct has access to its data.
     
     var body: some View {
-        switch viewRouter.currentPage {
+        switch viewRouter.currentPage { // displays a certain page depending on the value of currentPage
         case .LogIn:
             LogInPage().colorScheme(.light)
         case .Landing:
@@ -38,8 +35,6 @@ struct MotherView: View{
             OrdersPage().colorScheme(.light)
         case .Basket:
             BasketPage().colorScheme(.light)
-            //default:
-            //Loading().colorScheme(.light)
         }
     }
 }

@@ -1,8 +1,8 @@
-import SwiftUI
-import Firebase
+import SwiftUI //importing library for GUI features
+import Firebase //importing library to communicate with Firebase Database
 
 
-@main
+@main // entry point of App
 struct Stodge: App {
     
     @StateObject var viewRouter = ViewRouter() //MotherView
@@ -12,15 +12,15 @@ struct Stodge: App {
     @StateObject var basket = Basket() // Basket+Menu
     @StateObject var orders = Orders() // Orders
     
-    //firebase initialisation
-    init(){
-        FirebaseApp.configure()
+    init(){ // run when the function is first called
+        FirebaseApp.configure() // initialises the connection to the firebase database
     }
     
     var body: some Scene {
         WindowGroup {
             MotherView()
                 .ignoresSafeArea() // the home bar is causing 'safe area' below footer bar
+                //sharing access to these structs' data
                 .environmentObject(viewRouter)
                 .environmentObject(allitems)
                 .environmentObject(category)
@@ -29,6 +29,4 @@ struct Stodge: App {
                 .environmentObject(orders)
         }
     }
-    
-
 }

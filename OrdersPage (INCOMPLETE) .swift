@@ -54,8 +54,12 @@ struct OrdersPage: View{
                         }
                     }
                 }
+            }
+            VStack{
+                Spacer() // sets equal spacing between items displayed on the screen
+                Footer() // displays the page's footer
                 Spacer()
-                Footer()
+                    .frame(height: 40)
             }
         }
     }

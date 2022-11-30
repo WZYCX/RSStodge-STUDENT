@@ -1,72 +1,61 @@
-import SwiftUI
-import Firebase
+import SwiftUI //importing library for GUI features
+import Firebase //importing library to communicate with Firebase Database
 
 struct LogInPage: View {
+
+    @State private var Email: String = "" // setting up a private (can only be accessed within the struct) variable to store inputted Email
+    @State private var Password: String = "" // setting up a private (can only be accessed within the struct) variable to store inputted Password
+    @State var Loginfail = false // toggles to true if login fails for error message
+    @EnvironmentObject var viewRouter: ViewRouter // sharing ViewRouter so that this struct has access to its data.
     
-    //@State private var UserID: String = ""
-    @State private var Email: String = ""
-    @State private var Password: String = ""
-    @State var Loginfail = false
-    @EnvironmentObject var viewRouter: ViewRouter
-    
-    var body: some View {
+    var body: some View { // main body that contains all that is displayed on screen
         ZStack{
-            Color.white
-                .ignoresSafeArea()
-            //BackgroundView(topColor: .cyan, bottomColor: .red)
+            Color.white //sets background colour to white
+                .ignoresSafeArea() //does not create a 'safety' border around the edges
             VStack {
-                
-                Text("Welcome ")
+                Text("Welcome ") // displays string on the app
                     .font(.system(size: 20, weight: .bold))
                     .padding(.top,160)
                 
-                RSStodgeLogo(textSize: 30, ImageSize: 120)
-                    .padding(.bottom,50) // to replace text this from below
+                RSStodgeLogo(textSize: 30, ImageSize: 120) // Shows the RSStodgeLogo view
+                    .padding(.bottom,50)
                 
-                /*
-                Text(" \(UserID)")
-                    .font(.system(size: 70, weight: .bold))
-                    .padding(.bottom,10)
-                    .multilineTextAlignment(.center)
                  
-                //InputBox(Stuff: "Enter your User ID", matchingState: $UserID, IsSecure: false)
-                 */
-                 
-                InputBox(Stuff: "Enter your Email", matchingState: $Email, IsSecure: false)
-                    .onSubmit {
-                        print("Authenticating")
-                        LogIn()
+                InputBox(Stuff: "Enter your Email", matchingState: $Email, IsSecure: false) // A box displayed that takes an input of User's email
+                    .onSubmit { // when enter is clicked
+                        print("Authenticating") // debug - outputs to console if running
+                        LogIn() // Runs the function to check inputted detailsif they are in the database
                     }
                 
-                InputBox(Stuff: "Enter your Password", matchingState: $Password, IsSecure: true)
-                    .onSubmit {
-                        print("Authenticating")
-                        LogIn()
+                InputBox(Stuff: "Enter your Password", matchingState: $Password, IsSecure: true)  // A box displayed that takes an input of User's password in a secure text box
+                    .onSubmit { // when enter is clicked
+                        print("Authenticating")  // debug - outputs to console if running
+                        LogIn() // Runs the function to check inputted details if they are in the database
                     }
                 
-                Button{
+                Button{ // displays button that checks for successful login
                     LogIn()
                 }label: {
-                    StdButton("Confirm")
+                    StdButton("Confirm") // displays red button
                 }
                 
                 //switches to landing page if user is logged in
                 .onAppear {Auth.auth().addStateDidChangeListener { auth, user in
-                    if user != nil {
+                    if user != nil { //if there is already a user whose details have been authenticated redirect to landing page
                         print("Logging in...")
                         withAnimation {
-                            viewRouter.currentPage = .Landing
+                            viewRouter.currentPage = .Landing // redirects to Landing page if the user is validated
                         }
                     } else {
                         withAnimation {
-                            viewRouter.currentPage = .LogIn
+                            viewRouter.currentPage = .LogIn // redirects to Login page if the user is validated
                         }
                     }
                 }
                 }
             
-                if Loginfail == true{
-                    Text("Username/Password is incorrect")
+                if (emailCheck(email: Email) == false || Loginfail == true) {
+                    Text("Username/Password is incorrect") // If the login details are incorrect,
                         .foregroundColor(.red)
                 }
                 Spacer()
@@ -74,11 +63,15 @@ struct LogInPage: View {
         }
     }
     
+    func emailCheck(email:String) -> Bool{
+        return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: email)
+    }
+    
     func LogIn() {
-        Auth.auth().signIn(withEmail: Email, password: Password) { result, error in
+        Auth.auth().signIn(withEmail: Email, password: Password) { result, error in // checks if the database contains the user's details
             if error != nil{
-                Loginfail = true
-                print(error!.localizedDescription)
+                Loginfail = true // toggles the text displayed if the user details are incorrect
+                print(error!.localizedDescription) // debug - return to console the error from firebase if details are incorrect
             }
         }
     }
