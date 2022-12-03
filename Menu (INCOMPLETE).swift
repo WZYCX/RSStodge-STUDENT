@@ -55,6 +55,8 @@ struct MenuPage: View{
                         }.padding(10)
                         
                     }
+                    Spacer()
+                        .frame(height:120)
                 }
             }
             

@@ -53,6 +53,8 @@ struct OrdersPage: View{
                             OrderInView(Order: Order)
                         }
                     }
+                    Spacer()
+                        .frame(height:120)
                 }
             }
             VStack{

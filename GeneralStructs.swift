@@ -2,61 +2,60 @@ import SwiftUI
 import Firebase
 
 // for 'corners' parameter of cornerRadius
-struct RoundedCorner: Shape {
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
+struct RoundedCorner: Shape { // struct that allows certain corners of an object to be rounded
+    var radius: CGFloat = .infinity // input value of radius
+    var corners: UIRectCorner = .allCorners // input which corner
     
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
+        return Path(path.cgPath) // changes the corner to rounded
     }
 }
 
-// for 'corners' parameter of cornerRadius
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
+        clipShape( RoundedCorner(radius: radius, corners: corners) ) // apply the rounded corners to the object in view
     }
 }
 
 
 struct RSStodgeLogo: View {
     
-    var textSize: CGFloat
-    var ImageSize: CGFloat
+    var textSize: CGFloat // inputted value of size of text
+    var ImageSize: CGFloat // inputted value of size of image
     
     var body: some View {
         HStack{
             VStack (alignment: .leading){
-                Text("Rugby School")
+                Text("Rugby School") // displays text
                     .font(.system(size: textSize, weight: .semibold))
-                Text("Stodge")
+                Text("Stodge") // displays text
                     .font(.system(size: textSize, weight: .semibold))
-                Text("STUDENT")
+                Text("STUDENT") // displays text
                     .font(.system(size: textSize, weight: .semibold))
                     .foregroundColor(.blue)
             } .padding(.horizontal,5)
             
-            Image("RSLogo")
+            Image("RSLogo") // displays image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: ImageSize)
+                .frame(width: ImageSize) // sets the size of the image to inputted size
         }
     }
 }
 
 struct InputBox: View{
-    var Stuff : String
-    var matchingState: Binding<String>
-    var IsSecure : Bool
+    var Stuff : String //text displayed in input box
+    var matchingState: Binding<String> // the private variable storing this value
+    var IsSecure : Bool // decides whether or not the input box censors numbers for Password
     var body: some View{
         if IsSecure{
-            SecureField(Stuff, text: matchingState)
+            SecureField(Stuff, text: matchingState) // creates a censored input box if so
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .accentColor(.cyan) //change cursor colour
                 .frame(width: 300, height: 50)
         }else{
-            TextField(Stuff, text: matchingState)
+            TextField(Stuff, text: matchingState) // creates a normal input box if so
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .accentColor(.cyan) //change cursor colour
                 .frame(width: 300, height: 50)
@@ -68,37 +67,37 @@ struct InputBox: View{
 
 struct HeaderButton: View{
     
-    var ButtonSymbol: String
-    var LeadingorTrailing: Edge.Set
-    var isLogOut: Bool
-    @EnvironmentObject var viewRouter: ViewRouter
+    var ButtonSymbol: String // the name of the symbol displayed
+    var LeadingorTrailing: Edge.Set // dictates whether it is left or right of the header
+    var isLogOut: Bool // determines whether or not the button should log out or navigate to basket
+    @EnvironmentObject var viewRouter: ViewRouter // sharing ViewRouter so that this struct has access to its data
     
     var body: some View{
         
         Button{
-            print("Direct to right place")
+            print("Direct to right place") // debug - outputs to console if button functions
             if isLogOut == true {
                 do{
-                    print("Signing out...")
-                    try Auth.auth().signOut()
+                    print("Signing out...") // debug - outputs to console the program is trying to sign the user out
+                    try Auth.auth().signOut() // attempting to sign out user
                         
                 } catch let signOutError as NSError {
-                  print("Error signing out: %@", signOutError)
+                  print("Error signing out: %@", signOutError) // debug - outputs to console if there is an erroring signing out
                 }
                 
             } else {
                 withAnimation {
-                    viewRouter.currentPage = .Basket
+                    viewRouter.currentPage = .Basket // displays the basket page if 'isLogOut'is false
                 }
             }
             
         }label: {
-            Image(systemName: ButtonSymbol)
+            Image(systemName: ButtonSymbol) // displays the button as the inputted button type
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 50)
+                .frame(width: 50) // sets size to 50px
         }
-        .padding(LeadingorTrailing,10)
+        .padding(LeadingorTrailing,10) // sets whether the button is left or right
         .padding(.top,5)
         .foregroundColor(.red)
     }
@@ -110,11 +109,11 @@ struct Header: View{
     var body: some View{
         
         ZStack{
-            RSStodgeLogo(textSize: 16, ImageSize: 40)
+            RSStodgeLogo(textSize: 16, ImageSize: 40) // displays the RS Stodge Logo
                 HStack{
-                    HeaderButton(ButtonSymbol: "arrow.left.to.line.circle.fill", LeadingorTrailing: .leading,isLogOut: true)
-                    Spacer()
-                    HeaderButton(ButtonSymbol: "cart.circle.fill", LeadingorTrailing: .trailing, isLogOut: false)
+                    HeaderButton(ButtonSymbol: "arrow.left.to.line.circle.fill", LeadingorTrailing: .leading,isLogOut: true) // displays the sign out button
+                    Spacer() // sets equal spacing between items displayed on the screen
+                    HeaderButton(ButtonSymbol: "cart.circle.fill", LeadingorTrailing: .trailing, isLogOut: false) // displays the basket button
             }
             
         }.padding(.top,50)
@@ -123,27 +122,27 @@ struct Header: View{
 
 struct FooterButton: View{
     
-    var DirectTo: Page
-    var ButtonSymbol: String
-    var Caption: String
-    @EnvironmentObject var viewRouter: ViewRouter
+    var DirectTo: Page // inputted destination to navigate to
+    var ButtonSymbol: String // the name of the symbol displayed
+    var Caption: String // name of the button
+    @EnvironmentObject var viewRouter: ViewRouter // sharing ViewRouter so that this struct has access to its data
     
     var body: some View{
         VStack{
             Button{
-                print("Direct to right place")
+                print("Direct to right place") // debug - outputs to console if button functions
                 withAnimation {
-                    viewRouter.currentPage = DirectTo
+                    viewRouter.currentPage = DirectTo // displays and navigates to the inputted page
                 }
                 
             }label: {
-                Image(systemName: ButtonSymbol)
+                Image(systemName: ButtonSymbol) // displays image of the inputted button type
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30)
                     .foregroundColor(.white)
             }
-            Text(Caption)
+            Text(Caption) // displays the name of the button
                 .font(.system(size: 10, weight: .bold))
                 .foregroundColor(.white)
         }
@@ -152,31 +151,37 @@ struct FooterButton: View{
 
 struct Footer: View{
     var body: some View{
-        
         HStack{
-            Spacer()
-               .frame(width:40)
-            FooterButton(DirectTo: .Landing, ButtonSymbol: "house.fill", Caption: "Home")
-            Spacer()
-            FooterButton(DirectTo: .Menu, ButtonSymbol: "takeoutbag.and.cup.and.straw.fill", Caption: "Menu")
-            Spacer()
-            FooterButton(DirectTo: .Orders, ButtonSymbol: "list.bullet", Caption: "Orders")
-            Spacer()
-            FooterButton(DirectTo: .Account, ButtonSymbol: "person.circle", Caption: "Account")
-            Spacer()
-                .frame(width:40)
-            // to be completed
-        }.frame(maxWidth:.infinity)
-            .frame(height: 100)
-            .background(.red)
-            //.cornerRadius(10, corners:[.topLeft,.topRight])
+            Spacer() // sets spacing of 20px
+                .frame(width:20)
             
+            HStack{
+                Spacer() // sets spacing of 40px
+                    .frame(width:40)
+                FooterButton(DirectTo: .Landing, ButtonSymbol: "house.fill", Caption: "Home") // displays button for Landing Page
+                Spacer() // sets equal spacing between items displayed on the screen
+                FooterButton(DirectTo: .Menu, ButtonSymbol: "takeoutbag.and.cup.and.straw.fill", Caption: "Menu") // displays button for Menu Page
+                Spacer() // sets equal spacing between items displayed on the screen
+                FooterButton(DirectTo: .Orders, ButtonSymbol: "list.bullet", Caption: "Orders") // displays button for Orders Page
+                Spacer() // sets equal spacing between items displayed on the screen
+                FooterButton(DirectTo: .Account, ButtonSymbol: "person.circle", Caption: "Account") // displays button for Account Page
+                Spacer() // sets spacing of 40px
+                    .frame(width:40)
+            }
+            .frame(maxWidth:.infinity)
+            .frame(height: 80) // sets the box's height to 80px
+            .background(.red)
+            .cornerRadius(20) // sets all the corners as rounded
+            
+            Spacer() // sets spacing of 20px
+                .frame(width:20)
+        }
     }
 }
 
-//set the StdButton(text: "") to the standard
-func StdButton(_ text: String) -> some View {
-        let text = Text(text)
+
+func StdButton(_ text: String) -> some View { // set the StdButton(text: "") to the standard formatting of a button
+        let text = Text(text) // formats text inside of the button
         .frame(width: 200, height: 50)
         .background(.red)
         .font(.system(size: 20, weight: .bold))
@@ -190,12 +195,12 @@ func StdButton(_ text: String) -> some View {
 
 struct MenuStackButton: View{
     
-    @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var category: Categories
-    @EnvironmentObject var showcategory: showCategories
-    var textsize: CGFloat
-    var text: String
-    var image: String
+    @EnvironmentObject var viewRouter: ViewRouter // sharing ViewRouter so that this struct has access to its data
+    @EnvironmentObject var category: Categories // sharing Categories so that this struct has access to its data
+    @EnvironmentObject var showcategory: showCategories // sharing showCategories so that this struct has access to its data
+    var textsize: CGFloat // input of size of text
+    var text: String // input of the text contents
+    var image: String // input of image name
     
     var body: some View{
         Button{
@@ -213,22 +218,22 @@ struct MenuStackButton: View{
                 Color.gray
                   .opacity(0.2)
                 HStack{
-                    Spacer()
+                    Spacer() // sets spacing of 10px
                         .frame(width:10)
                     VStack{
-                        Spacer()
+                        Spacer() // sets equal spacing between items displayed on the screen
                         Text(text)
                             .font(.system(size: textsize,weight: .semibold))
                             .foregroundColor(.black)
-                        Spacer()
+                        Spacer() // sets spacing of 10px
                             .frame(height: 10)
                     }
-                    Spacer()
+                    Spacer() // sets equal spacing between items displayed on the screen
                     Image(image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 60,height: 60)
-                    Spacer()
+                    Spacer() // sets spacing of 10px
                         .frame(width:10)
                     
                 }
@@ -391,7 +396,7 @@ struct ItemToSell: View{
                     ProgressView()
                 })
                 
-                Spacer()
+                Spacer() // sets equal spacing between items displayed on the screen
                 //details + add button
                 VStack{
                     Text(item.name)
@@ -399,6 +404,7 @@ struct ItemToSell: View{
                     
                     Button{
                         print("Added item")
+                        //if item exists in basket already +=1 else add new item
                         item.count+=1
                         basket.currentBasket.append(item)
                         print(basket.currentBasket)
@@ -414,7 +420,7 @@ struct ItemToSell: View{
                         
                     }
                 }
-                Spacer()
+                Spacer() // sets equal spacing between items displayed on the screen
             }
         }
     }
@@ -459,13 +465,13 @@ struct OrderInView: View{
             
             
             HStack{
-                Spacer()
+                Spacer() // // sets spacing of 20px
                     .frame(width:20)
                 HStack{
                     HStack{
                         Text("Order #\(String(Order.id))")
                             .font(.system(size: 24, weight: .bold))
-                        Spacer()
+                        Spacer() // sets equal spacing between items displayed on the screen
                         
                         Text("\(Order.time)")
                     }
@@ -479,7 +485,7 @@ struct OrderInView: View{
                 .padding()
                 .border(.black, width: 3)
                 
-                Spacer()
+                Spacer() // sets spacing of 20px
                     .frame(width:20)
             }
             
@@ -585,7 +591,7 @@ struct ItemInBasket: View{
                     }
                     //Remove Item button
                     Button{
-                        print("Item Removed") // remove from basket (To Be Completed...)
+                        print("Item Removed") // remove from basket
                         item.count = 0
                         basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
                         print(basket.currentBasket)

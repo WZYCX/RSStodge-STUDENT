@@ -28,6 +28,8 @@ struct LandingPage: View{
                                               ["Title3","Body3"] ,
                                               ["Title4","Body4"]]) // displays all the news stories formatted
                         }
+                        Spacer()
+                            .frame(height:120)
                     }
                 }
                 

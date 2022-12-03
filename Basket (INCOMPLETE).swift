@@ -30,6 +30,8 @@ struct BasketPage: View{
                                 }
                             }
                         }
+                        Spacer()
+                            .frame(height:120)
                     }
                     Spacer()
                     
@@ -53,10 +55,14 @@ struct BasketPage: View{
                     }
                     
                     Spacer()
-                        .frame(height:20)
-                    
-                    Footer()
-            }
+                        .frame(height:150)
+                }
+                VStack{
+                    Spacer() // sets equal spacing between items displayed on the screen
+                    Footer() // displays the page's footer
+                    Spacer()
+                        .frame(height: 40)
+                }
             
         }
         .popover(isPresented: $showPopover) {
