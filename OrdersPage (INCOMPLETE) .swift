@@ -46,11 +46,11 @@ struct OrdersPage: View{
                 ScrollView(showsIndicators: false){
                     if (isActive == true){
                         ForEach(Orders.all){ Order in
-                            OrderInView(Order: Order)
+                            OrderInView(Order: Order, Active: "Y")
                         }
                     }else { //  if isActive == false
                         ForEach(Orders.all){ Order in
-                            OrderInView(Order: Order)
+                            OrderInView(Order: Order, Active: "N")
                         }
                     }
                     Spacer()

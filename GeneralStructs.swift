@@ -429,9 +429,10 @@ struct ItemToSell: View{
 struct Order: Identifiable{
     let id: String
     let number: String
-    let items: String// [Item] but not for now
-    let time: String // change to NSDate() or something that is actually the time
+    let items: String // [Item] but not for now
+    let time: Timestamp // change to NSDate() or something that is actually the time
     let code: String
+    let active: String
 }
 
 class Orders: ObservableObject {
@@ -450,7 +451,7 @@ class Orders: ObservableObject {
                 return
             }
             
-            self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: "\($0["Items"]!)", time: "\($0["Order Time"]!)", code: "\($0["Order Code"]!)") // $0 is first parameter
+            self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: "\($0["Items"]!)", time: $0["Order Time"] as! Timestamp , code: "\($0["Order Code"]!)", active: "\($0["isActive"]!)") // $0 is first parameter
             }
             print("All: \(self.all)")
         }
@@ -459,37 +460,49 @@ class Orders: ObservableObject {
 
 struct OrderInView: View{
     var Order: Order
+    var Active: String
     
     var body: some View{
-        VStack(alignment: .leading){
-            
-            
-            HStack{
-                Spacer() // // sets spacing of 20px
-                    .frame(width:20)
-                HStack{
-                    HStack{
-                        Text("Order #\(String(Order.id))")
-                            .font(.system(size: 24, weight: .bold))
-                        Spacer() // sets equal spacing between items displayed on the screen
-                        
-                        Text("\(Order.time)")
-                    }
-                    
-                    VStack(alignment:.leading){
-                        //ForEach(Order.items){ item in
-                        //  Text("\(item)")
-                        //}
-                    }
-                }
-                .padding()
-                .border(.black, width: 3)
+        if (Order.active == Active){
+            VStack(alignment: .leading){
                 
-                Spacer() // sets spacing of 20px
-                    .frame(width:20)
+                HStack{
+                    Spacer() // // sets spacing of 20px
+                        .frame(width:20)
+                    HStack{
+                        HStack{
+                            Text("Order #\(String(Order.number))") // Order number displayed
+                                .font(.system(size: 24, weight: .bold))
+                            Spacer() // sets equal spacing between items displayed on the screen
+                            
+                            VStack{
+                                Text(Date(timeIntervalSince1970: Double(Order.time.seconds)).formatted()) // Nicely formatted date 'MM/DD/YYYY, H:MM'
+                                
+                                VStack{
+                                    Text(Order.items)
+                                }
+                                ///ForEach(Order.items){ item in
+                                ///    Text(item.name)
+                                ///}
+                            }
+                            
+                        }
+                        
+                        VStack(alignment:.leading){
+                            //ForEach(Order.items){ item in
+                            //  Text("\(item)")
+                            //}
+                        }
+                    }
+                    .padding()
+                    .border(.black, width: 3)
+                    
+                    Spacer() // sets spacing of 20px
+                        .frame(width:20)
+                }
+                
+                
             }
-            
-            
         }
     }
 }
