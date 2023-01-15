@@ -101,7 +101,6 @@ struct ConfirmOrder: View{
     
     @EnvironmentObject var basket: Basket
     @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
-    @State var cost = 0.00
 
     var body: some View {
         //Title
@@ -123,7 +122,7 @@ struct ConfirmOrder: View{
                 }
                 
                 
-                Text("Total: £\(String(format: "%.2f", cost))")
+                Text("Total: £\(String(format: "%.2f", basket.totalCost))")
                     .font(.system(size: 20, weight: .semibold))
                     .multilineTextAlignment(.leading)
                 
