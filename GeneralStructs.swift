@@ -348,7 +348,7 @@ struct Dropdown: View{
     
     var body: some View{
         VStack{
-            Divider()
+            Divider() //looks ugly
             DropdownButton(text: "All")
             Divider()
             DropdownButton(text: "Snacks")
@@ -399,8 +399,10 @@ struct ItemToSell: View{
                 Spacer() // sets equal spacing between items displayed on the screen
                 //details + add button
                 VStack{
-                    Text(item.name)
+                    Text(item.name) // displays item name
                         .font(.system(size: 18, weight: .medium))
+                    
+                        Text("Price: £\(item.cost)") // displays item cost
                     
                     Button{
                         print("Added item")
@@ -548,7 +550,7 @@ struct ItemInBasket: View{
     @EnvironmentObject var basket: Basket
     
     var body: some View{
-        HStack{//Item placeholder
+        HStack{ //Item placeholder
             AsyncImage(url: URL(string: item.image)!, content: { image in
                 image
                     .resizable()
@@ -561,18 +563,24 @@ struct ItemInBasket: View{
             VStack{             
                 Text(item.name)
                     .font(.system(size: 18, weight: .medium))
+                
+                Text("Price: £\(item.cost)") // displays item cost
+                
                 HStack{
                     // add or remove counter
                     HStack{ 
-                        Button{
+                        Button{ // -1 count
                             if (item.count > 1) {
-                                item.count = item.count - 1
                                 print("Removed one")
+                                basket.calculateCost() //updates basket total cost value
+                                item.count = item.count - 1
+                                print(basket.currentBasket)
                                 
                             } else if (item.count == 1){
                                 print("Item removed")
                                 item.count = 0
                                 basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
+                                basket.calculateCost() //updates basket total cost value
                                 print(basket.currentBasket)
                                 
                             }
@@ -584,19 +592,23 @@ struct ItemInBasket: View{
                                 .foregroundColor(.white)
                                 .cornerRadius(10,corners: [.topLeft,.bottomLeft])
                         }
+                        
                         Text(String(item.count))
                             .frame(width: 30, height: 25)
                             .background(.white)
                             .font(.system(size: 15, weight: .bold))
                             .foregroundColor(.black)
                             .border(.black, width: 1)
-                        Button{
-                            print("Added one") 
+                        
+                        Button{ // +1 count
+                            print("Added one")
+                            basket.calculateCost() //updates basket total cost value
                             item.count = item.count + 1 //does not save the change to the basket but locally (resets when clicking off page)
+                            print(basket.currentBasket)
                         }label:{
                             Text("+")
                                 .frame(width: 30, height: 25) 
-                                .background(.red)
+                                .background(.green)
                                 .font(.system(size: 15, weight: .bold))
                                 .foregroundColor(.white)
                                 .cornerRadius(10,corners: [.topRight,.bottomRight])
@@ -607,7 +619,9 @@ struct ItemInBasket: View{
                         print("Item Removed") // remove from basket
                         item.count = 0
                         basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
+                        basket.calculateCost() //updates basket total cost value
                         print(basket.currentBasket)
+                        
                     }label:{
                         Image(systemName: "trash.fill")
                             .frame(width: 80, height: 25)

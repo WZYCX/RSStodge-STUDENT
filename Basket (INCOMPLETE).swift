@@ -4,7 +4,6 @@ struct BasketPage: View{
     
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var basket: Basket
-    @State var cost = 0.00
     @State var showPopover = false
     
     var body: some View{
@@ -37,7 +36,7 @@ struct BasketPage: View{
                     
                     //Displays total cost of products
                     //Cost = String(format: "%.2f", Cost) // round to two d.p. as a price
-                    Text("Total: £\(String(format: "%.2f", cost))")
+                    Text("Total: £\(String(format: "%.2f", basket.totalCost))")
                         .font(.system(size: 20, weight: .semibold))
                         .multilineTextAlignment(.leading)
                     
@@ -86,7 +85,15 @@ struct BasketPage: View{
 class Basket: ObservableObject {
     
     @Published var currentBasket: [Item] = []
+    @Published var totalCost = 0.00
     
+    func calculateCost() {
+        totalCost = 0
+        for item in currentBasket{
+            totalCost = totalCost + Double(item.cost)! * Double(item.count) // multiply by quantity
+        }
+        print(totalCost)
+    }
 }
 
 
