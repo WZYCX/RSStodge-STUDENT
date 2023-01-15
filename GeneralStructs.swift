@@ -402,7 +402,7 @@ struct ItemToSell: View{
                     Text(item.name) // displays item name
                         .font(.system(size: 18, weight: .medium))
                     
-                    Text("Price: £\(String(format: "%.2f", item.cost))") // displays item cost
+                    Text("Price: £\(String(format: "%.2f", Double(item.cost)!))") // displays item cost
                     
                     Button{
                         print("Added item")
@@ -564,7 +564,7 @@ struct ItemInBasket: View{
                 Text(item.name)
                     .font(.system(size: 18, weight: .medium))
                 
-                Text("Price: £\(String(format: "%.2f", item.cost))") // displays item cost
+                Text("Price: £\(String(format: "%.2f", Double(item.cost)!))") // displays item cost
                 
                 HStack{
                     // add or remove counter
@@ -659,7 +659,7 @@ struct ItemtoConfirm: View{
                     .font(.system(size: 18, weight: .medium))
                 HStack{
                     Text("Quantity: \(item.count)")
-                    Text("Cost: £\(String(format: "%.2f", item.cost))")
+                    Text("Cost: £\(String(format: "%.2f", Double(item.cost)!))")
                 }
             }
         }
