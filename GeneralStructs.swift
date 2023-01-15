@@ -405,13 +405,24 @@ struct ItemToSell: View{
                     Text("Price: £\(String(format: "%.2f", Double(item.cost)!))") // displays item cost
                     
                     Button{
-                        print("Added item")
-                        //if item exists in basket already +=1 else add new item
-                        item.count+=1
-                        basket.currentBasket.append(item)
-                        print(basket.currentBasket)
-                        //add item to basket
-                        //you can add two of the same into 'basket'
+                        var inBasket = false
+                        for purchased in basket.currentBasket {
+                            if (item.name == purchased.name) { //if item exists in basket already +=1 else add new item
+                                inBasket = true
+                                break
+                            }
+                        }
+                        if inBasket==false {
+                            item.count+=1
+                            basket.currentBasket.append(item)
+                            print(basket.currentBasket)
+                            basket.calculateCost() //updates basket total cost value
+                            print("Added item")
+                        } else {
+                            print("Already in Basket")
+                        }
+                        ///add item to basket
+                        ///you can add two of the same into 'basket'
                     }label:{
                         Text("Add")
                             .frame(width: 80, height: 20)
