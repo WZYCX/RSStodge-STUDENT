@@ -591,6 +591,7 @@ struct ItemInBasket: View{
                                         basket.currentBasket[pos].count -= 1 // adds one to the count of item in basket
                                     }
                                 }
+                                item.count -= 1
                                 basket.calculateCost() //updates basket total cost value
                                 //print(basket.currentBasket)
                                 print("Removed one")
@@ -625,6 +626,7 @@ struct ItemInBasket: View{
                                     basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
                                 }
                             }
+                            item.count += 1
                             basket.calculateCost() //updates basket total cost value
                             //print(basket.currentBasket)
                             print("Added one")
@@ -683,7 +685,7 @@ struct ItemtoConfirm: View{
                     .font(.system(size: 18, weight: .medium))
                 HStack{
                     Text("Quantity: \(item.count)")
-                    Text("Cost: £\(String(format: "%.2f", Double(item.cost)!))")
+                    Text("Cost: £\(String(format: "%.2f", Double(item.cost)!*Double(item.count)))")
                 }
             }
         }
