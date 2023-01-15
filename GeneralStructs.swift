@@ -413,21 +413,24 @@ struct ItemToSell: View{
                                 break
                             }
                         }
-                        if inBasket==false { // if not in basket, adds item to basket
-                            item.count+=1
-                            basket.currentBasket.append(item)
-                            //print(basket.currentBasket)
-                            basket.calculateCost() //updates basket total cost value
-                            print("Added item")
+                        if (Int(item.stock)!-(item.count+1)>=0){
                             
-                        } else { // if already in basket, increase quantity by 1
-                            for (pos, purchased) in basket.currentBasket.enumerated() {
-                                if purchased.name == item.name {
-                                    basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
+                            if inBasket==false { // if not in basket, adds item to basket
+                                item.count+=1
+                                basket.currentBasket.append(item)
+                                //print(basket.currentBasket)
+                                basket.calculateCost() //updates basket total cost value
+                                print("Added item")
+                                
+                            } else { // if already in basket, increase quantity by 1
+                                for (pos, purchased) in basket.currentBasket.enumerated() {
+                                    if purchased.name == item.name {
+                                        basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
+                                    }
                                 }
+                                basket.calculateCost() //updates basket total cost value
+                                print("Item quantity increased by one")
                             }
-                            basket.calculateCost() //updates basket total cost value
-                            print("Item quantity increased by one")
                         }
                     }label:{
                         Text("Add")
@@ -622,15 +625,17 @@ struct ItemInBasket: View{
                             .border(.black, width: 1)
                         
                         Button{ // +1 count
-                            for (pos, purchased) in basket.currentBasket.enumerated() {
-                                if purchased.name == item.name {
-                                    basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
+                            if (Int(item.stock)!-(item.count+1)>=0){
+                                for (pos, purchased) in basket.currentBasket.enumerated() {
+                                    if purchased.name == item.name {
+                                        basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
+                                    }
                                 }
+                                item.count += 1
+                                basket.calculateCost() //updates basket total cost value
+                                                       //print(basket.currentBasket)
+                                print("Added one")
                             }
-                            item.count += 1
-                            basket.calculateCost() //updates basket total cost value
-                            //print(basket.currentBasket)
-                            print("Added one")
                             
                         }label:{
                             Text("+")
