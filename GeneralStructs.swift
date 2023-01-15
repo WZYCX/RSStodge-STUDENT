@@ -407,22 +407,27 @@ struct ItemToSell: View{
                     Button{
                         var inBasket = false
                         for purchased in basket.currentBasket {
-                            if (item.name == purchased.name) { //if item exists in basket already +=1 else add new item
+                            if (item.name == purchased.name) { //checks if item already in basket
                                 inBasket = true
                                 break
                             }
                         }
-                        if inBasket==false {
+                        if inBasket==false { // if not in basket, adds item to basket
                             item.count+=1
                             basket.currentBasket.append(item)
-                            print(basket.currentBasket)
+                            //print(basket.currentBasket)
                             basket.calculateCost() //updates basket total cost value
                             print("Added item")
-                        } else {
-                            print("Already in Basket")
+                            
+                        } else { // if already in basket, increase quantity by 1
+                            for (pos, purchased) in basket.currentBasket.enumerated() {
+                                if purchased.name == item.name {
+                                    basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
+                                }
+                            }
+                            basket.calculateCost() //updates basket total cost value
+                            print("Item quantity increased by one")
                         }
-                        ///add item to basket
-                        ///you can add two of the same into 'basket'
                     }label:{
                         Text("Add")
                             .frame(width: 80, height: 20)
@@ -556,7 +561,6 @@ struct UserDetails: View{
 
 struct ItemInBasket: View{
     
-    
     @State var item: Item
     @EnvironmentObject var basket: Basket
     
@@ -582,19 +586,23 @@ struct ItemInBasket: View{
                     HStack{ 
                         Button{ // -1 count
                             if (item.count > 1) {
-                                print("Removed one")
+                                for (pos, purchased) in basket.currentBasket.enumerated() {
+                                    if purchased.name == item.name {
+                                        basket.currentBasket[pos].count -= 1 // adds one to the count of item in basket
+                                    }
+                                }
                                 basket.calculateCost() //updates basket total cost value
-                                item.count = item.count - 1
-                                print(basket.currentBasket)
+                                //print(basket.currentBasket)
+                                print("Removed one")
                                 
-                            } else if (item.count == 1){
-                                print("Item removed")
+                            }else if (item.count == 1){
                                 item.count = 0
                                 basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
                                 basket.calculateCost() //updates basket total cost value
-                                print(basket.currentBasket)
-                                
+                                print("Item removed")
+                                //print(basket.currentBasket)
                             }
+                            
                         }label:{
                             Text("-")
                                 .frame(width: 30, height: 25)
@@ -612,10 +620,15 @@ struct ItemInBasket: View{
                             .border(.black, width: 1)
                         
                         Button{ // +1 count
-                            print("Added one")
+                            for (pos, purchased) in basket.currentBasket.enumerated() {
+                                if purchased.name == item.name {
+                                    basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
+                                }
+                            }
                             basket.calculateCost() //updates basket total cost value
-                            item.count = item.count + 1 //does not save the change to the basket but locally (resets when clicking off page)
-                            print(basket.currentBasket)
+                            //print(basket.currentBasket)
+                            print("Added one")
+                            
                         }label:{
                             Text("+")
                                 .frame(width: 30, height: 25) 
@@ -625,13 +638,13 @@ struct ItemInBasket: View{
                                 .cornerRadius(10,corners: [.topRight,.bottomRight])
                         }
                     }
+                    
                     //Remove Item button
                     Button{
-                        print("Item Removed") // remove from basket
-                        item.count = 0
                         basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
                         basket.calculateCost() //updates basket total cost value
-                        print(basket.currentBasket)
+                        //print(basket.currentBasket)
+                        print("Item Removed") // remove from basket
                         
                     }label:{
                         Image(systemName: "trash.fill")
