@@ -1,4 +1,5 @@
 import SwiftUI
+import Firebase
 
 struct BasketPage: View{
     
@@ -100,6 +101,7 @@ class Basket: ObservableObject {
 struct ConfirmOrder: View{
     
     @EnvironmentObject var basket: Basket
+    @EnvironmentObject var Orders: Orders
     @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
 
     var body: some View {
@@ -129,6 +131,8 @@ struct ConfirmOrder: View{
                 //order button that leads to confirmation popup
                 Button{
                     print("Confirm")
+                    addOrder()
+                    print("Order Placed!")
                     presentationMode.wrappedValue.dismiss() // closes the popover
                 }label:{
                     StdButton("Confirm")
@@ -138,6 +142,45 @@ struct ConfirmOrder: View{
                     .frame(height:20)
             }
         }
+    }
+    func addOrder(){
+        let db = Firestore.firestore() // links to firestore
+        let lastOrder = String(Int(Orders.all.last!.number)! + 1) // BROKEN NOT WORKING
+        let orderCode = String(Int.random(in: 1000...9999))
+        var orderItems: Dictionary<String, String> = [:]
+        for i in basket.currentBasket{
+            orderItems[String(i.name)] = String(i.count)
+        }
+        var ref: DocumentReference? = nil
+        ref = db.collection("Orders").addDocument(data: [ //makes new 'order' document
+            "Order Code": orderCode,
+            "Order Number": lastOrder,
+            "Order Time": Timestamp(date: Date()),
+            "Items": orderItems,
+            "isActive": "Y"
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        
+        for i in basket.currentBasket{
+            let doc = db.collection("Items").document(i.id) //recalculates item stock quantities
+            doc.updateData([
+                "Stock": String(Int(i.stock)! - i.count)
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+        }
+        
+        basket.currentBasket = []
+        basket.calculateCost()
     }
 }
 
