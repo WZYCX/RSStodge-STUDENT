@@ -506,6 +506,7 @@ struct OrderInView: View{
                                 ///ForEach(Order.items){ item in
                                 ///    Text(item.name)
                                 ///}
+                                Text("Order Code: \(String(Order.code))")
                             }
                             
                         }
