@@ -39,7 +39,7 @@ class FirestoreManager: ObservableObject {
                 print("Error fetching documents: \(error!)")
                 return
             }
-            var all = documents.map { Item(id: $0.documentID, name: "\($0["Name"]!)" , desc: "\($0["Description"]!)", cost: "\($0["Sales Price"]!)", category: "\($0["Category"]!)", image: "\($0["Image"]!)", count: 0) // $0 is first parameter
+            var all = documents.map { Item(id: $0.documentID, name: "\($0["Name"]!)" , desc: "\($0["Description"]!)", cost: "\($0["Sales Price"]!)", category: "\($0["Category"]!)", image: "\($0["Image"]!)", stock: "\($0["Stock"]!)", count: 0) // $0 is first parameter
                 
             }
             print("All: \(all)")

@@ -368,6 +368,7 @@ struct Item: Identifiable{
     let cost: String
     let category: String
     let image: String
+    let stock: String
     var count: Int
 }
 
