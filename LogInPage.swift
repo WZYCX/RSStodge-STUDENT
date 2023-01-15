@@ -7,6 +7,7 @@ struct LogInPage: View {
     @State private var Password: String = "" // setting up a private (can only be accessed within the struct) variable to store inputted Password
     @State var Loginfail = false // toggles to true if login fails for error message
     @EnvironmentObject var viewRouter: ViewRouter // sharing ViewRouter so that this struct has access to its data.
+    @State var showForgot = false // toggles to true to show Forgotten Details page
     
     var body: some View { // main body that contains all that is displayed on screen
         ZStack{
@@ -32,6 +33,12 @@ struct LogInPage: View {
                         print("Authenticating")  // debug - outputs to console if running
                         LogIn() // Runs the function to check inputted details if they are in the database
                     }
+                
+                Button{ // Forgotten Details popover
+                    showForgot.toggle()
+                }label: {
+                    Text("Forgot Details?")
+                }
                 
                 Button{ // displays button that checks for successful login
                     LogIn()
@@ -61,9 +68,12 @@ struct LogInPage: View {
                 Spacer()
             }
         }
+        .popover(isPresented: $showForgot) {
+           forgotDetails().colorScheme(.light)
+        }
     }
     
-    func emailCheck(email:String) -> Bool{
+    func emailCheck(email:String) -> Bool{ // regex check to sanitise email input
         return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: email)
     }
     
@@ -74,6 +84,58 @@ struct LogInPage: View {
                 print(error!.localizedDescription) // debug - return to console the error from firebase if details are incorrect
             }
         }
+    }
+}
+
+struct forgotDetails: View{
+    
+    @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
+    @State private var Email : String = ""
+    @State private var Message : String = " "
+    
+    var body: some View{
+        ZStack{
+            Color.white
+                .ignoresSafeArea()
+            
+            VStack{
+                Text("Forgotten Details")
+                    .font(.system(size: 40, weight: .bold))
+                    .padding(.top,20)
+                
+                Spacer()
+                
+                Text("A email will be sent to your inbox to reset your password:")
+                    .font(.system(size: 14, weight: .regular))
+                
+                InputBox(Stuff: "Enter your Email", matchingState: $Email, IsSecure: false) // A box displayed that takes an input of User's email
+                    .padding(.bottom,40)
+                
+                Text(Message)
+                    .foregroundColor(.red)
+                
+                Button{
+                    if (emailCheck(email: Email) == true) { // if the email is incorrect
+                        sendResetEmail(email: Email) // Runs the function to send reset email
+                        Message = "Email Sent!"
+                    } else{
+                        Message = "Invalid Email"
+                    }
+                    
+                } label: {
+                    StdButton("Send Email")
+                    
+                }
+                Spacer()
+            }
+        }
+    }
+    func sendResetEmail(email:String) {
+        print("Sending Email...")
+        Auth.auth().sendPasswordReset(withEmail: email) // sends email to inputted address
+    }
+    func emailCheck(email:String) -> Bool{ // regex check to sanitise email input
+        return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: email)
     }
 }
 
