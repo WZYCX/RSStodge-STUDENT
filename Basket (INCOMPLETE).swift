@@ -145,7 +145,7 @@ struct ConfirmOrder: View{
     }
     func addOrder(){
         let db = Firestore.firestore() // links to firestore
-        let lastOrder = String(Int(Orders.all.last!.number)! + 1) // BROKEN NOT WORKING
+        let OrderNum = String(Int(Double(Orders.all.count)) + 1) // Finds the number of Orders
         let orderCode = String(Int.random(in: 1000...9999))
         var orderItems: Dictionary<String, String> = [:]
         for i in basket.currentBasket{
@@ -154,7 +154,7 @@ struct ConfirmOrder: View{
         var ref: DocumentReference? = nil
         ref = db.collection("Orders").addDocument(data: [ //makes new 'order' document
             "Order Code": orderCode,
-            "Order Number": lastOrder,
+            "Order Number": OrderNum,
             "Order Time": Timestamp(date: Date()),
             "Items": orderItems,
             "isActive": "Y"
