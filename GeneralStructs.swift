@@ -78,6 +78,7 @@ struct HeaderButton: View{
             print("Direct to right place") // debug - outputs to console if button functions
             if isLogOut == true {
                 do{
+                    viewRouter.currentPage = .Splash
                     print("Signing out...") // debug - outputs to console the program is trying to sign the user out
                     try Auth.auth().signOut() // attempting to sign out user
                         

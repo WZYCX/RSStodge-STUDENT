@@ -45,21 +45,6 @@ struct LogInPage: View {
                 }label: {
                     StdButton("Confirm") // displays red button
                 }
-                
-                //switches to landing page if user is logged in
-                .onAppear {Auth.auth().addStateDidChangeListener { auth, user in
-                    if user != nil { //if there is already a user whose details have been authenticated redirect to landing page
-                        print("Logging in...")
-                        withAnimation {
-                            viewRouter.currentPage = .Landing // redirects to Landing page if the user is validated
-                        }
-                    } else {
-                        withAnimation {
-                            viewRouter.currentPage = .LogIn // redirects to Login page if the user is validated
-                        }
-                    }
-                }
-                }
             
                 if (emailCheck(email: Email) == false || Loginfail == true) {
                     Text("Username/Password is incorrect") // If the login details are incorrect,
