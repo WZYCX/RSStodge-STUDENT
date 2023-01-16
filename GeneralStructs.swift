@@ -432,6 +432,8 @@ struct ItemToSell: View{
                                 basket.calculateCost() //updates basket total cost value
                                 print("Item quantity increased by one")
                             }
+                        }else{
+                            print("Insufficient Stock")
                         }
                     }label:{
                         Text("Add")
@@ -507,7 +509,9 @@ struct OrderInView: View{
                                 ///ForEach(Order.items){ item in
                                 ///    Text(item.name)
                                 ///}
-                                Text("Order Code: \(String(Order.code))")
+                                if (Active == "Y"){
+                                    Text("Order Code: \(String(Order.code))")
+                                }
                             }
                             
                         }
@@ -637,6 +641,8 @@ struct ItemInBasket: View{
                                 basket.calculateCost() //updates basket total cost value
                                                        //print(basket.currentBasket)
                                 print("Added one")
+                            }else{
+                                print("Insufficient Stock")
                             }
                             
                         }label:{
