@@ -157,7 +157,9 @@ struct ConfirmOrder: View{
             "Order Number": OrderNum,
             "Order Time": Timestamp(date: Date()),
             "Items": orderItems,
-            "isActive": "Y"
+            "isActive": "Y",
+            "User": Auth.auth().currentUser!.uid,
+            "TotalCost": String(basket.totalCost)
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

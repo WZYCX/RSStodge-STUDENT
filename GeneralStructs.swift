@@ -458,6 +458,8 @@ struct Order: Identifiable{
     let time: Timestamp // change to NSDate() or something that is actually the time
     let code: String
     let active: String
+    let user: String
+    let totalCost: String
 }
 
 class Orders: ObservableObject {
@@ -476,7 +478,7 @@ class Orders: ObservableObject {
                 return
             }
             
-            self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: "\($0["Items"]!)", time: $0["Order Time"] as! Timestamp , code: "\($0["Order Code"]!)", active: "\($0["isActive"]!)") // $0 is first parameter
+            self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: "\($0["Items"]!)", time: $0["Order Time"] as! Timestamp , code: "\($0["Order Code"]!)", active: "\($0["isActive"]!)", user: "\($0["User"]!)", totalCost: "\($0["TotalCost"]!)") // $0 is first parameter
             }
             print("All: \(self.all)")
         }
