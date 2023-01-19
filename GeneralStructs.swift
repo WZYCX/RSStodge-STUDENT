@@ -707,3 +707,33 @@ struct ItemtoConfirm: View{
         }
     }
 }
+
+//popup window
+struct popupWindow: View{
+    var image: String
+    var text: String
+    var body: some View{
+        ZStack{
+            Rectangle()
+                .fill(.black)
+                .frame(width:182,height: 182)
+                .cornerRadius(5)
+            
+            Rectangle()
+                .fill(.white)
+                .frame(width:180,height: 180)
+                .cornerRadius(5)
+                
+            VStack(alignment: .center){
+                Spacer()
+                Image(image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 120,height:120)
+                Text(text)
+                    .font(.system(size: 18, weight: .bold))
+                Spacer()
+            }
+        }
+    }
+}

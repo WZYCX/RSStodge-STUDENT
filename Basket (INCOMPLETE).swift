@@ -63,6 +63,16 @@ struct BasketPage: View{
                     Spacer()
                         .frame(height: 40)
                 }
+                
+                //popup for 'Order Placed'
+                if (basket.showPopup == true) {
+                    popupWindow(image: "GreenTick", text: "Order Placed!")
+                        .onAppear{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                basket.showPopup.toggle()
+                            }
+                        }
+                }
             
         }
         .popover(isPresented: $showPopover) {
@@ -87,6 +97,7 @@ class Basket: ObservableObject {
     
     @Published var currentBasket: [Item] = []
     @Published var totalCost = 0.00
+    @Published var showPopup = false
     
     func calculateCost() {
         totalCost = 0
@@ -183,6 +194,7 @@ struct ConfirmOrder: View{
         
         basket.currentBasket = []
         basket.calculateCost()
+        basket.showPopup.toggle() // shows confirm 
     }
 }
 
