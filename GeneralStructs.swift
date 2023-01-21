@@ -480,7 +480,7 @@ class Orders: ObservableObject {
             
             self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: "\($0["Items"]!)", time: $0["Order Time"] as! Timestamp , code: "\($0["Order Code"]!)", active: "\($0["isActive"]!)", user: "\($0["User"]!)", totalCost: "\($0["TotalCost"]!)") // $0 is first parameter
             }
-            print("All: \(self.all)")
+            print("Orders: \(self.all)")
         }
     }
 }
