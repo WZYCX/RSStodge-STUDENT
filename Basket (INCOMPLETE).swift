@@ -111,6 +111,7 @@ class Basket: ObservableObject {
 
 struct ConfirmOrder: View{
     
+    @EnvironmentObject var users: Users
     @EnvironmentObject var basket: Basket
     @EnvironmentObject var Orders: Orders
     @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
@@ -155,34 +156,49 @@ struct ConfirmOrder: View{
         }
     }
     func addOrder(){
-        let db = Firestore.firestore() // links to firestore
-        let OrderNum = String(Int(Double(Orders.all.count)) + 1) // Finds the number of Orders
-        let orderCode = String(Int.random(in: 1000...9999))
-        var orderItems: Dictionary<String, String> = [:]
-        for i in basket.currentBasket{
-            orderItems[String(i.name)] = String(i.count)
-        }
-        var ref: DocumentReference? = nil
-        ref = db.collection("Orders").addDocument(data: [ //makes new 'order' document
-            "Order Code": orderCode,
-            "Order Number": OrderNum,
-            "Order Time": Timestamp(date: Date()),
-            "Items": orderItems,
-            "isActive": "Y",
-            "User": Auth.auth().currentUser!.uid,
-            "TotalCost": String(basket.totalCost)
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
+        if users.checkLimit() == true{ //checks if User has sufficient spent limit
+            let db = Firestore.firestore() // links to firestore
+            let OrderNum = String(Int(Double(Orders.all.count)) + 1) // Finds the number of Orders
+            let orderCode = String(Int.random(in: 1000...9999))
+            var orderItems: Dictionary<String, String> = [:]
+            for i in basket.currentBasket{
+                orderItems[String(i.name)] = String(i.count)
             }
-        }
-        
-        for i in basket.currentBasket{
-            let doc = db.collection("Items").document(i.id) //recalculates item stock quantities
+            var ref: DocumentReference? = nil
+            ref = db.collection("Orders").addDocument(data: [ //makes new 'order' document
+                "Order Code": orderCode,
+                "Order Number": OrderNum,
+                "Order Time": Timestamp(date: Date()),
+                "Items": orderItems,
+                "isActive": "Y",
+                "User": Auth.auth().currentUser!.uid,
+                "TotalCost": String(basket.totalCost)
+                ]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                    }
+                }
+            
+            for i in basket.currentBasket{ //recalculates item stock quantities
+                let doc = db.collection("Items").document(i.id)
+                doc.updateData([
+                    "Stock": String(Int(i.stock)! - i.count)
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+            }
+            
+            // update spent
+            var i = users.mainUser[0]
+            let doc = db.collection("Users").document(i.id)
             doc.updateData([
-                "Stock": String(Int(i.stock)! - i.count)
+                "Spent": String(Double(i.spent)! + basket.totalCost)
             ]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")
@@ -190,11 +206,13 @@ struct ConfirmOrder: View{
                     print("Document successfully updated")
                 }
             }
+            
+            basket.currentBasket = [] // clears basket
+            basket.calculateCost()
+            basket.showPopup.toggle() // shows confirm
+        } else { // if not enough spent limit left
+            print("Insufficient Balance")
         }
-        
-        basket.currentBasket = []
-        basket.calculateCost()
-        basket.showPopup.toggle() // shows confirm 
     }
 }
 

@@ -737,3 +737,62 @@ struct popupWindow: View{
         }
     }
 }
+
+struct User: Identifiable{
+    let id: String
+    let name: String
+    let password: String
+    let UID: String
+    let year: String
+    let limit: String
+    let spent: String
+}
+
+class Users: ObservableObject {
+    
+    @Published var all: [User] = []
+    @Published var mainUser: [User] = []
+    @EnvironmentObject var basket: Basket
+    
+    init(){
+        fetchAllUsers()
+        findMainUser()
+    }
+    
+    func fetchAllUsers() {
+        let db = Firestore.firestore()
+        db.collection("Users").addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error!)")
+                return
+            }
+            let all = documents.map { User(id: $0.documentID, name: "\($0["Name"]!)", password: "\($0["Password"]!)", UID: "\($0["UID"]!)", year: "\($0["Year"]!)", limit: "\($0["Limit"]!)", spent: "\($0["Spent"]!)") // $0 is first parameter
+            }
+            print("Users: \(all)")
+        }
+    }
+    
+    func findMainUser() {
+        let currentUser = Auth.auth().currentUser!.uid
+        print("OK!")
+        print(all)
+        for user in all{
+            print("Loop")
+            if user.UID == currentUser {
+                mainUser.append(user) //set mainUser[0]
+                print(" Main User:\(mainUser)")
+            }
+        }
+    }
+    
+    func checkLimit() -> Bool {
+        if mainUser[0].limit == "-1"{
+            return true
+        } else if ((Double(mainUser[0].spent)!) + basket.totalCost <= Double(mainUser[0].limit)!){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+}
