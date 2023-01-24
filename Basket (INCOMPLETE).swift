@@ -115,7 +115,7 @@ struct ConfirmOrder: View{
     @EnvironmentObject var basket: Basket
     @EnvironmentObject var Orders: Orders
     @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
-
+    
     var body: some View {
         //Title
         ZStack{
