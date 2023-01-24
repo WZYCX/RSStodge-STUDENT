@@ -11,7 +11,7 @@ struct Stodge: App {
     @StateObject var showcategory = showCategories() // Landing+Menu
     @StateObject var basket = Basket() // Basket+Menu
     @StateObject var orders = Orders() // Orders
-    @StateObject var users = Users() // Orders
+    @StateObject var users = Users() // Users
     
     init(){ // run when the function is first called
         FirebaseApp.configure() // initialises the connection to the firebase database

@@ -2,6 +2,8 @@ import SwiftUI
 
 struct LandingPage: View{
     
+    @EnvironmentObject var user: Users
+    
     var body: some View{
             ZStack{
                 Color.white // sets background colour to white
@@ -12,7 +14,7 @@ struct LandingPage: View{
                     ScrollView(showsIndicators: false){ // the area of the screen is scrollable
                         
                         VStack(alignment:.leading){
-                            Text("Hi \nWilliam") //placeholder for "Hi \n\(name)"
+                            Text("Hi \n\(user.mainUser[0].id)") //placeholder for "Hi \n\(name)"
                                 .frame(width: 300, height: 150, alignment: .leading)
                                 .font(.system(size: 50, weight: .semibold))
                         }

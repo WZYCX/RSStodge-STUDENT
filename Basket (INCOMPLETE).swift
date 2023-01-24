@@ -156,7 +156,7 @@ struct ConfirmOrder: View{
         }
     }
     func addOrder(){
-        if users.checkLimit() == true{ //checks if User has sufficient spent limit
+        if users.checkLimit(basket: basket) == true{ //checks if User has sufficient spent limit
             let db = Firestore.firestore() // links to firestore
             let OrderNum = String(Int(Double(Orders.all.count)) + 1) // Finds the number of Orders
             let orderCode = String(Int.random(in: 1000...9999))
@@ -177,7 +177,7 @@ struct ConfirmOrder: View{
                     if let err = err {
                         print("Error adding document: \(err)")
                     } else {
-                        print("Document added with ID: \(ref!.documentID)")
+                        print("Document added to 'Orders' with ID: \(ref!.documentID)")
                     }
                 }
             
@@ -189,13 +189,13 @@ struct ConfirmOrder: View{
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
-                        print("Document successfully updated")
+                        print("'Stock' in 'Items' successfully updated")
                     }
                 }
             }
             
             // update spent
-            var i = users.mainUser[0]
+            let i = users.mainUser[0]
             let doc = db.collection("Users").document(i.id)
             doc.updateData([
                 "Spent": String(Double(i.spent)! + basket.totalCost)
@@ -203,7 +203,7 @@ struct ConfirmOrder: View{
                 if let err = err {
                     print("Error updating document: \(err)")
                 } else {
-                    print("Document successfully updated")
+                    print("'Spent' in 'Users' successfully updated")
                 }
             }
             
@@ -215,6 +215,58 @@ struct ConfirmOrder: View{
         }
     }
 }
+
+class Users: ObservableObject {
+    
+    @Published var all: [User] = []
+    @Published var mainUser: [User] = []
+    @EnvironmentObject var basket: Basket
+    
+    init(){
+        fetchAllUsers()
+        findMainUser()
+    }
+    
+    func fetchAllUsers() {
+        let db = Firestore.firestore()
+        db.collection("Users").addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error!)")
+                return
+            }
+            self.all = documents.map { User(id: $0.documentID, name: "\($0["Name"]!)", password: "\($0["Password"]!)", UID: "\($0["UID"]!)", year: "\($0["Year"]!)", limit: "\($0["Limit"]!)", spent: "\($0["Spent"]!)") // $0 is first parameter
+            }
+            print("Users: \(self.all)")
+        }
+    }
+    
+    func findMainUser() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Change `2.0` to the desired number of seconds.
+            let currentUser = Auth.auth().currentUser!.uid
+            //print("OK!")
+            //print(self.all)
+            for user in self.all{
+                //print("Loop")
+                if user.UID == currentUser {
+                    self.mainUser.append(user) //set mainUser[0]
+                    print(" Main User: \(self.mainUser)")
+                }
+            }
+        }
+    }
+    
+    func checkLimit(basket: Basket) -> Bool {
+        if mainUser[0].limit == "-1"{
+            return true
+        } else if ((Double(mainUser[0].spent)!) + basket.totalCost <= Double(mainUser[0].limit)!){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+}
+
 
 struct BasketPreview: PreviewProvider {
     
