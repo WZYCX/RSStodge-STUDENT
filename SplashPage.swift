@@ -25,7 +25,7 @@ struct SplashPage: View {
         //switches to landing page if user is logged in
         .onAppear {Auth.auth().addStateDidChangeListener { auth, user in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                print("Async after 2 seconds")
+                print("Delay by 1 seconds")
                 if user != nil { //if there is already a user whose details have been authenticated redirect to landing page
                     print("Logging in...")
                     withAnimation {
