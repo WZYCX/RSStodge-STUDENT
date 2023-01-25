@@ -248,6 +248,7 @@ class Users: ObservableObject {
             for user in self.all{
                 //print("Loop")
                 if user.UID == currentUser {
+                    self.mainUser = []
                     self.mainUser.append(user) //set mainUser[0]
                     print(" Main User: \(self.mainUser)")
                 }
@@ -256,6 +257,7 @@ class Users: ObservableObject {
     }
     
     func checkLimit(basket: Basket) -> Bool {
+        findMainUser()
         if mainUser[0].limit == "-1"{
             return true
         } else if ((Double(mainUser[0].spent)!) + basket.totalCost <= Double(mainUser[0].limit)!){
