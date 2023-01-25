@@ -486,6 +486,7 @@ class Orders: ObservableObject {
 }
 
 struct OrderInView: View{
+    
     var Order: Order
     var Active: String
     
@@ -514,16 +515,36 @@ struct OrderInView: View{
                                 if (Active == "Y"){
                                     Text("Order Code: \(String(Order.code))")
                                 }
+                                
+                                Button{ // cancel order
+                                    let db = Firestore.firestore()
+                                    db.collection("Orders").document(Order.id).delete() { err in
+                                        if let err = err {
+                                            print("Error removing document: \(err)")
+                                        } else {
+                                            print("Order successfully removed!")
+                                        }
+                                    }
+                                    
+                                }label:{
+                                    Text("Cancel")
+                                        .frame(width: 80, height: 25)
+                                        .background(.red)
+                                        .font(.system(size: 15, weight: .bold))
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }.padding(.leading,20)
+                            }
+                                
                             }
                             
                         }
                         
-                        VStack(alignment:.leading){
+                        //VStack(alignment:.leading){
                             //ForEach(Order.items){ item in
                             //  Text("\(item)")
                             //}
-                        }
-                    }
+                        //}
                     .padding()
                     .border(.black, width: 3)
                     
