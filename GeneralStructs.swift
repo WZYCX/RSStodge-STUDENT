@@ -340,7 +340,9 @@ class Categories: ObservableObject {
 }
 
 class showCategories: ObservableObject{
+    
     @Published var show = false
+    
 }
 
 struct Dropdown: View{
@@ -399,6 +401,7 @@ struct ItemToSell: View{
                 })
                 
                 Spacer() // sets equal spacing between items displayed on the screen
+                
                 //details + add button
                 VStack{
                     Text(item.name) // displays item name
@@ -454,7 +457,7 @@ struct ItemToSell: View{
 struct Order: Identifiable{
     let id: String
     let number: String
-    let items: String // [Item] but not for now
+    let items: [String: String] // [Item] but not for now
     let time: Timestamp // change to NSDate() or something that is actually the time
     let code: String
     let active: String
@@ -478,8 +481,8 @@ class Orders: ObservableObject {
                 return
             }
             
-            self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: "\($0["Items"]!)", time: $0["Order Time"] as! Timestamp , code: "\($0["Order Code"]!)", active: "\($0["isActive"]!)", user: "\($0["User"]!)", totalCost: "\($0["TotalCost"]!)") // $0 is first parameter
-            }
+            self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: $0["Items"] as! Dictionary<String, String>, time: $0["Order Time"] as! Timestamp , code: "\($0["Order Code"]!)", active: "\($0["isActive"]!)", user: "\($0["User"]!)", totalCost: "\($0["TotalCost"]!)") // $0 is first parameter
+            } //IT WORKS AND IS NOW DICTIONARY JUST NEED TO UNPACK IT TO DISPLAY ITEMS
             print("Orders: \(self.all)")
         }
     }
@@ -489,35 +492,70 @@ struct OrderInView: View{
     
     var Order: Order
     var Active: String
+    @EnvironmentObject var users: Users
     
     var body: some View{
         if (Order.active == Active){
             VStack(alignment: .leading){
-                
                 HStack{
                     Spacer() // // sets spacing of 20px
                         .frame(width:20)
-                    HStack{
                         HStack{
                             Text("Order #\(String(Order.number))") // Order number displayed
-                                .font(.system(size: 24, weight: .bold))
+                                .font(.system(size: 22, weight: .bold))
+                                .scaledToFill()
+                                .minimumScaleFactor(1)
+                                .lineLimit(1)
                             Spacer() // sets equal spacing between items displayed on the screen
                             
-                            VStack{
+                            VStack(alignment: .trailing){
                                 Text(Date(timeIntervalSince1970: Double(Order.time.seconds)).formatted()) // Nicely formatted date 'MM/DD/YYYY, H:MM'
                                 
                                 VStack{
-                                    Text(Order.items)
+                                    ForEach(Array(Order.items.enumerated()), id: \.0) { (_, elem) in
+                                        Text("\(elem.key): \(elem.value)")
+                                    }
                                 }
-                                ///ForEach(Order.items){ item in
-                                ///    Text(item.name)
-                                ///}
+                                .font(.system(size: 12))
+                                .scaledToFill()
+                                .minimumScaleFactor(0.6)
+
                                 if (Active == "Y"){
                                     Text("Order Code: \(String(Order.code))")
+                                        .fontWeight(.semibold)
                                 }
                                 
-                                Button{ // cancel order
+                                // cancel order
+                                Button{
                                     let db = Firestore.firestore()
+                                    
+                                    for i in Order.items{ //recalculates item stock quantities
+                                        let doc = db.collection("Items").document(Order.id)
+                                        doc.updateData([
+                                            "Stock": "1"//String(Int(i.stock)! + i.count)
+                                        ]) { err in
+                                            if let err = err {
+                                                print("Error updating document: \(err)")
+                                            } else {
+                                                print("'Stock' in 'Items' successfully added back")
+                                            }
+                                        }
+                                    }
+                                    
+                                    // update spent
+                                    let i = users.mainUser[0]
+                                    let doc = db.collection("Users").document(i.id)
+                                    doc.updateData([
+                                        "Spent": String(Double(i.spent)! - Double(Order.totalCost)!)
+                                    ]) { err in
+                                        if let err = err {
+                                            print("Error updating document: \(err)")
+                                        } else {
+                                            print("'Spent' in 'Users' successfully updated")
+                                        }
+                                    }
+                                    
+                                    // remove order from Firebase
                                     db.collection("Orders").document(Order.id).delete() { err in
                                         if let err = err {
                                             print("Error removing document: \(err)")
@@ -535,18 +573,9 @@ struct OrderInView: View{
                                         .cornerRadius(10)
                                 }.padding(.leading,20)
                             }
-                                
-                            }
-                            
                         }
-                        
-                        //VStack(alignment:.leading){
-                            //ForEach(Order.items){ item in
-                            //  Text("\(item)")
-                            //}
-                        //}
-                    .padding()
-                    .border(.black, width: 3)
+                        .padding()
+                        .border(.black, width: 3)
                     
                     Spacer() // sets spacing of 20px
                         .frame(width:20)
