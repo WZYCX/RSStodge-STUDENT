@@ -241,16 +241,20 @@ class Users: ObservableObject {
     }
     
     func findMainUser() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Change `2.0` to the desired number of seconds.
-            let currentUser = Auth.auth().currentUser!.uid
-            //print("OK!")
-            //print(self.all)
-            for user in self.all{
-                //print("Loop")
-                if user.UID == currentUser {
-                    self.mainUser = []
-                    self.mainUser.append(user) //set mainUser[0]
-                    print(" Main User: \(self.mainUser)")
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if Auth.auth().currentUser != nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Change `2.0` to the desired number of seconds.
+                    let currentUser = Auth.auth().currentUser!.uid
+                    //print("OK!")
+                    //print(self.all)
+                    for user in self.all{
+                        //print("Loop")
+                        if user.UID == currentUser {
+                            self.mainUser = []
+                            self.mainUser.append(user) //set mainUser[0]
+                            print(" Main User: \(self.mainUser)")
+                        }
+                    }
                 }
             }
         }
