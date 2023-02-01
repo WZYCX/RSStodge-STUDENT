@@ -528,11 +528,18 @@ struct OrderInView: View{
                                 // cancel order
                                 Button{
                                     let db = Firestore.firestore()
+                                    var currentItem: [Item] = []
                                     
-                                    for i in Order.items{ //recalculates item stock quantities
-                                        let doc = db.collection("Items").document(Order.id)
+                                    //recalculates item stock quantities
+                                    for i in Order.items{
+                                        for item in allitems.all{ // finds current item in Item object form
+                                            if item.name == i.key{
+                                                currentItem.append(item)
+                                            }
+                                        }
+                                        let doc = db.collection("Items").document(currentItem[0].id)
                                         doc.updateData([
-                                            "Stock": "1"//String(Int(i.stock)! + i.count)
+                                            "Stock": String(Int(currentItem[0].stock)! + Int(i.value)!) // adds stock back to item
                                         ]) { err in
                                             if let err = err {
                                                 print("Error updating document: \(err)")
@@ -546,12 +553,12 @@ struct OrderInView: View{
                                     let i = users.mainUser[0]
                                     let doc = db.collection("Users").document(i.id)
                                     doc.updateData([
-                                        "Spent": String(Double(i.spent)! - Double(Order.totalCost)!)
+                                        "Spent": String(Double(i.spent)! - Double(Order.totalCost)!) // removes order cost from User's expenditure
                                     ]) { err in
                                         if let err = err {
                                             print("Error updating document: \(err)")
                                         } else {
-                                            print("'Spent' in 'Users' successfully updated")
+                                            print("'Spent' in 'Users' successfully restored")
                                         }
                                     }
                                     
