@@ -4,6 +4,7 @@ struct OrdersPage: View{
     
     @State var isActive = true
     @EnvironmentObject var Orders: Orders
+    @EnvironmentObject var basket: Basket
     
     var body: some View{
         ZStack{
@@ -62,6 +63,15 @@ struct OrdersPage: View{
                 Footer() // displays the page's footer
                 Spacer()
                     .frame(height: 40)
+            }
+            
+            if (basket.showPopup == "OrderCancelled") {
+                popupWindow(image: "GreenTick", text: "Order Cancelled!")
+                    .onAppear{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            basket.showPopup = ""
+                        }
+                    }
             }
         }
     }

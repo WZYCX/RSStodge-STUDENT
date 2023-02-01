@@ -425,6 +425,7 @@ struct ItemToSell: View{
                                 //print(basket.currentBasket)
                                 basket.calculateCost() //updates basket total cost value
                                 print("Added item")
+                                basket.showPopup = "AddedToBasket"
                                 
                             } else { // if already in basket, increase quantity by 1
                                 for (pos, purchased) in basket.currentBasket.enumerated() {
@@ -437,6 +438,7 @@ struct ItemToSell: View{
                             }
                         }else{
                             print("Insufficient Stock")
+                            basket.showPopup = "InsufficientStock"
                         }
                     }label:{
                         Text("Add")
@@ -493,6 +495,8 @@ struct OrderInView: View{
     var Order: Order
     var Active: String
     @EnvironmentObject var users: Users
+    @EnvironmentObject var allitems: AllItems
+    @EnvironmentObject var basket: Basket
     
     var body: some View{
         if (Order.active == Active){
@@ -570,6 +574,8 @@ struct OrderInView: View{
                                             print("Order successfully removed!")
                                         }
                                     }
+                                    
+                                    basket.showPopup = "OrderCancelled" //shows popup of order cancelled
                                     
                                 }label:{
                                     Text("Cancel")
@@ -702,6 +708,7 @@ struct ItemInBasket: View{
                                 print("Added one")
                             }else{
                                 print("Insufficient Stock")
+                                basket.showPopup = "InsufficientStock" //displays the 'Insufficient Stock' popup
                             }
                             
                         }label:{

@@ -65,13 +65,29 @@ struct BasketPage: View{
                 }
                 
                 //popup for 'Order Placed'
-                if (basket.showPopup == true) {
+                if (basket.showPopup == "OrderPlaced") {
                     popupWindow(image: "GreenTick", text: "Order Placed!")
                         .onAppear{
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                basket.showPopup.toggle()
+                                basket.showPopup = ""
                             }
                         }
+                } else if (basket.showPopup == "InsufficientStock") {
+                    popupWindow(image: "RedCross", text: "Insufficient Stock!")
+                        .onAppear{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                basket.showPopup = ""
+                            }
+                        }
+                    
+                } else if (basket.showPopup == "InsufficientBalance") {
+                    popupWindow(image: "RedCross", text: "Insufficient Balance!")
+                        .onAppear{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                basket.showPopup = ""
+                            }
+                        }
+                    
                 }
             
         }
@@ -97,7 +113,7 @@ class Basket: ObservableObject {
     
     @Published var currentBasket: [Item] = []
     @Published var totalCost = 0.00
-    @Published var showPopup = false
+    @Published var showPopup = ""
     
     func calculateCost() {
         totalCost = 0
@@ -209,9 +225,10 @@ struct ConfirmOrder: View{
             
             basket.currentBasket = [] // clears basket
             basket.calculateCost()
-            basket.showPopup.toggle() // shows confirm
+            basket.showPopup = "" // shows confirm
         } else { // if not enough spent limit left
             print("Insufficient Balance")
+            basket.showPopup = "InsufficientBalance"
         }
     }
 }
