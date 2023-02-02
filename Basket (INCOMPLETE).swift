@@ -225,7 +225,7 @@ struct ConfirmOrder: View{
             
             basket.currentBasket = [] // clears basket
             basket.calculateCost()
-            basket.showPopup = "" // shows confirm
+            basket.showPopup = "OrderPlaced" // shows confirm
         } else { // if not enough spent limit left
             print("Insufficient Balance")
             basket.showPopup = "InsufficientBalance"
