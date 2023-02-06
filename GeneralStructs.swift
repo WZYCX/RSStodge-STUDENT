@@ -515,67 +515,68 @@ struct OrderInView: View{
                                 .scaledToFill()
                                 .minimumScaleFactor(0.6)
 
-                                if (Active == "Y"){
-                                    Text("Order Code: \(String(Order.code))")
-                                        .fontWeight(.semibold)
-                                }
-                                
-                                // cancel order
-                                Button{
-                                    let db = Firestore.firestore()
-                                    var currentItem: [Item] = []
+                                if (Active == "Y"){ // if the order is 'Active'
                                     
-                                    //recalculates item stock quantities
-                                    for i in Order.items{
-                                        for item in allitems.all{ // finds current item in Item object form
-                                            if item.name == i.key{
-                                                currentItem.append(item)
+                                    Text("Order Code: \(String(Order.code))") // displays order code
+                                        .fontWeight(.semibold)
+                                    
+                                    // cancel order
+                                    Button{
+                                        let db = Firestore.firestore()
+                                        var currentItem: [Item] = [] // initialises the current item variable
+                                        
+                                        //recalculates item stock quantities
+                                        for i in Order.items{
+                                            for item in allitems.all{ // finds current item in Item object form
+                                                if item.name == i.key{
+                                                    currentItem.append(item)
+                                                }
+                                            }
+                                            let doc = db.collection("Items").document(currentItem[0].id)
+                                            doc.updateData([
+                                                "Stock": String(Int(currentItem[0].stock)! + Int(i.value)!) // adds stock back to item
+                                            ]) { err in
+                                                if let err = err {
+                                                    print("Error updating document: \(err)") // debug
+                                                } else {
+                                                    print("'Stock' in 'Items' successfully added back") // debug
+                                                }
                                             }
                                         }
-                                        let doc = db.collection("Items").document(currentItem[0].id)
+                                        
+                                        // update spent
+                                        let i = users.mainUser[0]
+                                        let doc = db.collection("Users").document(i.id)
                                         doc.updateData([
-                                            "Stock": String(Int(currentItem[0].stock)! + Int(i.value)!) // adds stock back to item
+                                            "Spent": String(Double(i.spent)! - Double(Order.totalCost)!) // removes order cost from User's expenditure
                                         ]) { err in
                                             if let err = err {
-                                                print("Error updating document: \(err)")
+                                                print("Error updating document: \(err)") // debug
                                             } else {
-                                                print("'Stock' in 'Items' successfully added back")
+                                                print("'Spent' in 'Users' successfully restored") // debug
                                             }
                                         }
-                                    }
-                                    
-                                    // update spent
-                                    let i = users.mainUser[0]
-                                    let doc = db.collection("Users").document(i.id)
-                                    doc.updateData([
-                                        "Spent": String(Double(i.spent)! - Double(Order.totalCost)!) // removes order cost from User's expenditure
-                                    ]) { err in
-                                        if let err = err {
-                                            print("Error updating document: \(err)")
-                                        } else {
-                                            print("'Spent' in 'Users' successfully restored")
+                                        
+                                        // remove order from Firebase
+                                        db.collection("Orders").document(Order.id).delete() { err in
+                                            if let err = err {
+                                                print("Error removing document: \(err)") // debug
+                                            } else {
+                                                print("Order successfully removed!") // debug
+                                            }
                                         }
-                                    }
-                                    
-                                    // remove order from Firebase
-                                    db.collection("Orders").document(Order.id).delete() { err in
-                                        if let err = err {
-                                            print("Error removing document: \(err)")
-                                        } else {
-                                            print("Order successfully removed!")
-                                        }
-                                    }
-                                    
-                                    basket.showPopup = "OrderCancelled" //shows popup of order cancelled
-                                    
-                                }label:{
-                                    Text("Cancel")
-                                        .frame(width: 80, height: 25)
-                                        .background(.red)
-                                        .font(.system(size: 15, weight: .bold))
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                }.padding(.leading,20)
+                                        
+                                        basket.showPopup = "OrderCancelled" //shows popup of order cancelled
+                                        
+                                    }label:{
+                                        Text("Cancel")
+                                            .frame(width: 80, height: 25)
+                                            .background(.red)
+                                            .font(.system(size: 15, weight: .bold))
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10)
+                                    }.padding(.leading,20)
+                                }
                             }
                         }
                         .padding()
