@@ -205,42 +205,38 @@ struct MenuStackButton: View{
     
     var body: some View{
         Button{
-            // sets the category to whatever
-            category.CurrentCategory = text
-            print(category.CurrentCategory)
-            // directs to Menu Page
-            viewRouter.currentPage = .Menu
-            // the dropdown menu hiding
-                showcategory.show = false
+            category.CurrentCategory = text // sets the category to chosen category
+            print(category.CurrentCategory) //debugging
+            viewRouter.currentPage = .Menu // directs to Menu Page
+            showcategory.show = false // the dropdown menu hiding
 
         }label: {
             ZStack{
-                //Color.red
-                Color.gray
+                Color.gray // backgroud colour set to grey
                   .opacity(0.2)
                 HStack{
                     Spacer() // sets spacing of 10px
                         .frame(width:10)
                     VStack{
                         Spacer() // sets equal spacing between items displayed on the screen
-                        Text(text)
-                            .font(.system(size: textsize,weight: .semibold))
-                            .foregroundColor(.black)
+                        Text(text) // displays inputted button name
+                            .font(.system(size: textsize,weight: .semibold)) // sets button text size to inputted value
+                            .foregroundColor(.black) // font colour is black
                         Spacer() // sets spacing of 10px
                             .frame(height: 10)
                     }
                     Spacer() // sets equal spacing between items displayed on the screen
-                    Image(image)
+                    Image(image) // displays inputted image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 60,height: 60)
+                        .frame(width: 60,height: 60) // scales it to fit in a 60x60px box
                     Spacer() // sets spacing of 10px
                         .frame(width:10)
                     
                 }
             }
             .frame(width: 160,height: 80)
-            .cornerRadius(10)
+            .cornerRadius(10) // sets the button size to 160x80px with rounded corners
         }
     }
 }
@@ -252,14 +248,12 @@ struct MenuStack: View{
             HStack(alignment: .center){
                 
                 MenuStackButton(textsize: 16, text: "All", image: "both")
-                //
                 MenuStackButton(textsize: 16, text: "Snacks", image: "crisps")
             }
                 
             HStack(alignment: .center){
                 MenuStackButton(textsize: 16, text: "Drinks", image: "coladrink")
-                //
-                MenuStackButton(textsize: 16, text: "Hot Food", image: "burgercolour")
+                MenuStackButton(textsize: 16, text: "Hot Food", image: "burgercolour") // four buttons are displayed with their specific details inputted
             }
             
         }
@@ -268,14 +262,14 @@ struct MenuStack: View{
 
 struct NewsStory: View{
     
-    var NewsTitle: String
-    var NewsBody: String
+    var NewsTitle: String // takes the news title as an input
+    var NewsBody: String // takes the news body/main text as an input
     
     var body: some View{
         VStack(alignment:.leading){
-            Text("\(NewsTitle)\n")
-                .font(.system(size: 28, weight: .bold))
-            Text("\(NewsBody)\n\n")
+            Text("\(NewsTitle)\n") // displays the Title with a line break after
+                .font(.system(size: 28, weight: .bold)) // sets Title font bigger and bold
+            Text("\(NewsBody)\n\n") // displays the Body with two line breaks after
         }
         
     }
@@ -284,18 +278,16 @@ struct NewsStory: View{
 struct NewsBox: View{
     
     var stories : [[String]] // [["Title1","Body1"] , ["Title2","Body2"]]
-    @State var more = false
-    // more button to show ALL NEWS
     
     var body: some View{
         VStack(alignment: .leading){
-            ForEach(0...2, id:\.self){ i in //only
+            ForEach(0...2, id:\.self){ i in //only the first three news items
                 VStack(alignment:.leading){
-                    Rectangle()
+                    Rectangle() // adds a grey line in between News items
                         .frame(height:5)
                         .foregroundColor(.gray.opacity(0.1))
-                    NewsStory(NewsTitle: stories[i][0], NewsBody: stories[i][1])
-                        .padding(.leading,20)
+                    NewsStory(NewsTitle: stories[i][0], NewsBody: stories[i][1]) // displays the NewsStory() with certain inputted values
+                        .padding(.leading,20) //adds 20px of space from the left of the screen
                 }
             }
         }
@@ -306,26 +298,24 @@ struct NewsBox: View{
 
 struct DropdownButton: View {
     
-    @EnvironmentObject var category: Categories
-    @EnvironmentObject var showcategory: showCategories
-    var text: String
+    @EnvironmentObject var category: Categories // sharing Categories so that this struct has access to its data
+    @EnvironmentObject var showcategory: showCategories // sharing showCategories so that this struct has access to its data
+    var text: String // takes the button name as an input
     
     var body: some View{
         ZStack{
-            if text == category.CurrentCategory {
+            if text == category.CurrentCategory { // sets the current category as red
                 Color.red
                     .opacity(0.9)
             }else{
                 Color.white
             }
             Button{
-                category.CurrentCategory = text
-                print(category.CurrentCategory)
-                //withAnimation{ // animates the dropdown menu
-                    showcategory.show = false
-                //}
+                category.CurrentCategory = text // setting the current category to whatever is selected
+                print(category.CurrentCategory) // debug
+                showcategory.show = false //hide the Dropdown menu
             }label:{
-                Text(text)
+                Text(text) // displays the button with the category name
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(.black)
             }
@@ -335,13 +325,13 @@ struct DropdownButton: View {
 
 class Categories: ObservableObject {
     
-    @Published var CurrentCategory = "All"
+    @Published var CurrentCategory = "All" //setting the original value of currentCategory as an @published value so that all structs are updated when its value changes
     
 }
 
 class showCategories: ObservableObject{
     
-    @Published var show = false
+    @Published var show = false //setting the original value of show as an @published value so that all structs are updated when its value changes
     
 }
 
@@ -351,20 +341,20 @@ struct Dropdown: View{
     
     var body: some View{
         VStack{
-            Divider() //looks ugly
+            Divider() //lsplits up the options
             DropdownButton(text: "All")
             Divider()
             DropdownButton(text: "Snacks")
             Divider()
             DropdownButton(text: "Drinks")
             Divider()
-            DropdownButton(text: "Hot Food")
+            DropdownButton(text: "Hot Food") // four different category options all as buttons
             Divider()
         }
     }
 }
 
-struct Item: Identifiable{
+struct Item: Identifiable{ // custom Item object
     let id: String
     let name: String
     let desc: String
@@ -456,11 +446,11 @@ struct ItemToSell: View{
     }
 }
 
-struct Order: Identifiable{
+struct Order: Identifiable{ // custom Order object
     let id: String
     let number: String
-    let items: [String: String] // [Item] but not for now
-    let time: Timestamp // change to NSDate() or something that is actually the time
+    let items: [String: String]
+    let time: Timestamp
     let code: String
     let active: String
     let user: String
@@ -468,6 +458,7 @@ struct Order: Identifiable{
 }
 
 class Orders: ObservableObject {
+    
     @Published var all : [Order] = []
     
     init() {
@@ -636,22 +627,22 @@ struct UserDetails: View{
 
 struct ItemInBasket: View{
     
-    @State var item: Item
-    @EnvironmentObject var basket: Basket
+    @State var item: Item // takes the item that is being displayed as input
+    @EnvironmentObject var basket: Basket // sharing Basket so that this struct has access to its data.
     
     var body: some View{
-        HStack{ //Item placeholder
-            AsyncImage(url: URL(string: item.image)!, content: { image in
+        HStack{
+            AsyncImage(url: URL(string: item.image)!, content: { image in // loads image from URL
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100,height:100)
             }, placeholder: {
-                ProgressView()
+                ProgressView() // shows loading spinner if image not rendered
             })
             
             VStack{             
-                Text(item.name)
+                Text(item.name) // displays Item Name
                     .font(.system(size: 18, weight: .medium))
                 
                 Text("Price: £\(String(format: "%.2f", Double(item.cost)!))") // displays item cost
@@ -666,29 +657,29 @@ struct ItemInBasket: View{
                                         basket.currentBasket[pos].count -= 1 // adds one to the count of item in basket
                                     }
                                 }
-                                item.count -= 1
+                                item.count -= 1 // decrease item count by one in this struct
                                 basket.calculateCost() //updates basket total cost value
-                                //print(basket.currentBasket)
-                                print("Removed one")
+                                print("Removed one") // debug
+                                print(basket.currentBasket) // debug
                                 
                             }else if (item.count == 1){
                                 item.count = 0
-                                basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
+                                basket.currentBasket = basket.currentBasket.filter{$0.name != item.name} // removes item from current basket
                                 basket.calculateCost() //updates basket total cost value
-                                print("Item removed")
-                                //print(basket.currentBasket)
+                                print("Item removed") // debug
+                                print(basket.currentBasket) // debug
                             }
                             
                         }label:{
-                            Text("-")
+                            Text("-") // displayed minus sign for button
                                 .frame(width: 30, height: 25)
-                                .background(.red)
+                                .background(.red) // red colour for negative
                                 .font(.system(size: 15, weight: .bold))
                                 .foregroundColor(.white)
                                 .cornerRadius(10,corners: [.topLeft,.bottomLeft])
                         }
                         
-                        Text(String(item.count))
+                        Text(String(item.count)) // displays quantity of item
                             .frame(width: 30, height: 25)
                             .background(.white)
                             .font(.system(size: 15, weight: .bold))
@@ -696,25 +687,25 @@ struct ItemInBasket: View{
                             .border(.black, width: 1)
                         
                         Button{ // +1 count
-                            if (Int(item.stock)!-(item.count+1)>=0){
+                            if (Int(item.stock)!-(item.count+1)>=0){ // checks if the stock is more or equal to number in basket
                                 for (pos, purchased) in basket.currentBasket.enumerated() {
                                     if purchased.name == item.name {
                                         basket.currentBasket[pos].count += 1 // adds one to the count of item in basket
                                     }
                                 }
-                                item.count += 1
+                                item.count += 1 // increase item count by one in this struct
                                 basket.calculateCost() //updates basket total cost value
-                                                       //print(basket.currentBasket)
-                                print("Added one")
+                                print(basket.currentBasket) // debug
+                                print("Added one") // debug
                             }else{
-                                print("Insufficient Stock")
+                                print("Insufficient Stock") // debug
                                 basket.showPopup = "InsufficientStock" //displays the 'Insufficient Stock' popup
                             }
                             
                         }label:{
-                            Text("+")
+                            Text("+") // displays plus sign
                                 .frame(width: 30, height: 25) 
-                                .background(.green)
+                                .background(.green) // green since it is positive
                                 .font(.system(size: 15, weight: .bold))
                                 .foregroundColor(.white)
                                 .cornerRadius(10,corners: [.topRight,.bottomRight])
@@ -723,15 +714,15 @@ struct ItemInBasket: View{
                     
                     //Remove Item button
                     Button{
-                        basket.currentBasket = basket.currentBasket.filter{$0.name != item.name}
-                        basket.calculateCost() //updates basket total cost value
-                        //print(basket.currentBasket)
-                        print("Item Removed") // remove from basket
-                        
+                        basket.currentBasket = basket.currentBasket.filter{$0.name != item.name} // removes item from current basket
+                        basket.calculateCost() // updates basket total cost value
+                        print(basket.currentBasket) // debug
+                        print("Item Removed") // debug
+                         
                     }label:{
-                        Image(systemName: "trash.fill")
+                        Image(systemName: "trash.fill") // displays a bin
                             .frame(width: 80, height: 25)
-                            .background(.red)
+                            .background(.red) // red since it is negative
                             .font(.system(size: 15, weight: .bold))
                             .foregroundColor(.white)
                             .cornerRadius(10)
@@ -746,26 +737,26 @@ struct ItemInBasket: View{
 
 struct ItemtoConfirm: View{
     
-    @State var item: Item
+    @State var item: Item // takes the item that is being displayed as input
     
     var body: some View{
-        HStack{//Item placeholder
+        HStack{
             
-            AsyncImage(url: URL(string: item.image)!, content: { image in
+            AsyncImage(url: URL(string: item.image)!, content: { image in // loads image from URL
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100,height:100)
             }, placeholder: {
-                ProgressView()
+                ProgressView() // shows loading spinner if image is not rendered
             })
             
             VStack{
-                Text(item.name)
+                Text(item.name) // displays item's name
                     .font(.system(size: 18, weight: .medium))
                 HStack{
-                    Text("Quantity: \(item.count)")
-                    Text("Cost: £\(String(format: "%.2f", Double(item.cost)!*Double(item.count)))")
+                    Text("Quantity: \(item.count)") // displays quantity of item to order
+                    Text("Cost: £\(String(format: "%.2f", Double(item.cost)!*Double(item.count)))") // displays the cost of the item * quantity
                 }
             }
         }
@@ -778,36 +769,26 @@ struct popupWindow: View{
     var text: String
     var body: some View{
         ZStack{
-            Rectangle()
+            Rectangle() // creates a black border
                 .fill(.black)
                 .frame(width:182,height: 182)
                 .cornerRadius(5)
             
-            Rectangle()
+            Rectangle() // creates the popup background
                 .fill(.white)
                 .frame(width:180,height: 180)
                 .cornerRadius(5)
                 
             VStack(alignment: .center){
                 Spacer()
-                Image(image)
+                Image(image) // displays the image in the popup
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 120,height:120)
-                Text(text)
+                Text(text) // shows the message for the popup
                     .font(.system(size: 18, weight: .bold))
                 Spacer()
             }
         }
     }
-}
-
-struct User: Identifiable{
-    let id: String
-    let name: String
-    let password: String
-    let UID: String
-    let year: String
-    let limit: String
-    let spent: String
 }
