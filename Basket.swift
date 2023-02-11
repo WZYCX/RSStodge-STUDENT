@@ -234,12 +234,14 @@ struct User: Identifiable{
     let year: String
     let limit: String
     let spent: String
+    let profilepic: String
+    let code: String
 }
-
+let blankUser = User(id: "", name: "", password: "", UID: "", year: "", limit: "", spent: "", profilepic: "", code: "")
 class Users: ObservableObject {
     
     @Published var all: [User] = [] // contains all Users in the database
-    @Published var mainUser: [User] = [] // contains the user currently logged in
+    @Published var mainUser: [User] = [blankUser] // contains the user currently logged in
     @EnvironmentObject var basket: Basket // sharing Basket so that this struct has access to its data.
     
     init(){ // run when the class is initialised
@@ -255,7 +257,7 @@ class Users: ObservableObject {
                 return
             }
             // fetches all users from Firestore Database and maps its values to the custom object 'User' and stores them in an array
-            self.all = documents.map { User(id: $0.documentID, name: "\($0["Name"]!)", password: "\($0["Password"]!)", UID: "\($0["UID"]!)", year: "\($0["Year"]!)", limit: "\($0["Limit"]!)", spent: "\($0["Spent"]!)") // $0 is first parameter
+            self.all = documents.map { User(id: $0.documentID, name: "\($0["Name"]!)", password: "\($0["Password"]!)", UID: "\($0["UID"]!)", year: "\($0["Year"]!)", limit: "\($0["Limit"]!)", spent: "\($0["Spent"]!)" , profilepic: "\($0["ProfilePic"]!)", code: "\($0["Code"]!)") // $0 is first parameter
             }
             print("Users: \(self.all)") // debug
         }
@@ -264,7 +266,7 @@ class Users: ObservableObject {
     func findMainUser() {
         Auth.auth().addStateDidChangeListener { auth, user in
             if Auth.auth().currentUser != nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Delay for 2 second
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Delay for 1.5 second
                     let currentUser = Auth.auth().currentUser!.uid // fetches the current User logged in
                     print(self.all) // debug
                     for user in self.all{
