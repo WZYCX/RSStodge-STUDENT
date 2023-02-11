@@ -415,7 +415,7 @@ struct ItemToSell: View{
                                 //print(basket.currentBasket)
                                 basket.calculateCost() //updates basket total cost value
                                 print("Added item")
-                                basket.showPopup = "AddedToBasket"
+                                basket.showPopup = "AddedToBasket" // displays popup for 'added to basket'
                                 
                             } else { // if already in basket, increase quantity by 1
                                 for (pos, purchased) in basket.currentBasket.enumerated() {
@@ -425,6 +425,7 @@ struct ItemToSell: View{
                                 }
                                 basket.calculateCost() //updates basket total cost value
                                 print("Item quantity increased by one")
+                                basket.showPopup = "AddedToBasket" // displays popup for 'added to basket'
                             }
                         }else{
                             print("Insufficient Stock")
@@ -459,41 +460,41 @@ struct Order: Identifiable{ // custom Order object
 
 class Orders: ObservableObject {
     
-    @Published var all : [Order] = []
+    @Published var all : [Order] = [] // stores all orders from the database
     
-    init() {
+    init() { // runs when object initialises
         fetchAllOrders()
     }
     
     func fetchAllOrders() {
-        let db = Firestore.firestore() // links to firestore
+        let db = Firestore.firestore() // establishes connection to firestore
         
         db.collection("Orders").addSnapshotListener { querySnapshot, error in //listens for changes in 'Items'
             guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents: \(error!)")
+                print("Error fetching documents: \(error!)") // error message
                 return
             }
             
             self.all = documents.map { Order(id: $0.documentID, number: "\($0["Order Number"]!)" , items: $0["Items"] as! Dictionary<String, String>, time: $0["Order Time"] as! Timestamp , code: "\($0["Order Code"]!)", active: "\($0["isActive"]!)", user: "\($0["User"]!)", totalCost: "\($0["TotalCost"]!)") // $0 is first parameter
-            } //IT WORKS AND IS NOW DICTIONARY JUST NEED TO UNPACK IT TO DISPLAY ITEMS
-            print("Orders: \(self.all)")
+            } // maps each document from 'Orders' to the Object
+            print("Orders: \(self.all)") // debug
         }
     }
 }
 
 struct OrderInView: View{
     
-    var Order: Order
-    var Active: String
-    @EnvironmentObject var users: Users
-    @EnvironmentObject var allitems: AllItems
-    @EnvironmentObject var basket: Basket
+    var Order: Order // takes an Order as input
+    var Active: String // takes in order status as input
+    @EnvironmentObject var users: Users // sharing Users so that this struct has access to its data.
+    @EnvironmentObject var allitems: AllItems // sharing AllItems so that this struct has access to its data.
+    @EnvironmentObject var basket: Basket // sharing Basket so that this struct has access to its data.
     
     var body: some View{
-        if (Order.active == Active){
+        if (Order.active == Active){ // only shows if the order status matches those being displayed
             VStack(alignment: .leading){
                 HStack{
-                    Spacer() // // sets spacing of 20px
+                    Spacer() // sets spacing of 20px
                         .frame(width:20)
                         HStack{
                             Text("Order #\(String(Order.number))") // Order number displayed
@@ -508,7 +509,7 @@ struct OrderInView: View{
                                 
                                 VStack{
                                     ForEach(Array(Order.items.enumerated()), id: \.0) { (_, elem) in
-                                        Text("\(elem.key): \(elem.value)")
+                                        Text("\(elem.key): \(elem.value)") // show each item from the 'items' variable
                                     }
                                 }
                                 .font(.system(size: 12))
@@ -585,8 +586,6 @@ struct OrderInView: View{
                     Spacer() // sets spacing of 20px
                         .frame(width:20)
                 }
-                
-                
             }
         }
     }
@@ -624,7 +623,6 @@ struct UserDetails: View{
 }
 
 //basket
-
 
 struct ItemInBasket: View{
     

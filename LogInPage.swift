@@ -53,13 +53,13 @@ struct LogInPage: View {
                 Spacer()
             }
         }
-        .popover(isPresented: $showForgot) {
+        .popover(isPresented: $showForgot) { // if true, popover is shown
            forgotDetails().colorScheme(.light)
         }
     }
     
     func emailCheck(email:String) -> Bool{ // regex check to sanitise email input
-        return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: email)
+        return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: email)  // returns a boolean value
     }
     
     func LogIn() {
@@ -75,40 +75,40 @@ struct LogInPage: View {
 struct forgotDetails: View{
     
     @Environment(\.presentationMode) var presentationMode // sets the variable presentationMode to the view
-    @State private var Email : String = ""
-    @State private var Message : String = " "
+    @State private var Email : String = "" // sets up a variable that allows user to type in their email
+    @State private var Message : String = "" // sets up a variable that can display a message
     
     var body: some View{
         ZStack{
-            Color.white
+            Color.white // set background to white
                 .ignoresSafeArea()
             
             VStack{
-                Text("Forgotten Details")
+                Text("Forgotten Details") // title
                     .font(.system(size: 40, weight: .bold))
                     .padding(.top,20)
                 
                 Spacer()
                 
-                Text("A email will be sent to your inbox to reset your password:")
+                Text("A email will be sent to your inbox to reset your password:") // displayed message
                     .font(.system(size: 14, weight: .regular))
                 
                 InputBox(Stuff: "Enter your Email", matchingState: $Email, IsSecure: false) // A box displayed that takes an input of User's email
                     .padding(.bottom,40)
                 
-                Text(Message)
+                Text(Message) // displays whether the email  is sent or not
                     .foregroundColor(.red)
                 
                 Button{
                     if (emailCheck(email: Email) == true) { // if the email is incorrect
                         sendResetEmail(email: Email) // Runs the function to send reset email
-                        Message = "Email Sent!"
+                        Message = "Email Sent!" // sets message to be displayed as 'Email Sent!'
                     } else{
-                        Message = "Invalid Email"
+                        Message = "Invalid Email" // sets message to be displayed as 'Invalid Email'
                     }
                     
                 } label: {
-                    StdButton("Send Email")
+                    StdButton("Send Email") // displays a preset standard button with text 'Send Email'
                     
                 }
                 Spacer()
@@ -116,11 +116,11 @@ struct forgotDetails: View{
         }
     }
     func sendResetEmail(email:String) {
-        print("Sending Email...")
+        print("Sending Email...") // debug
         Auth.auth().sendPasswordReset(withEmail: email) // sends email to inputted address
     }
     func emailCheck(email:String) -> Bool{ // regex check to sanitise email input
-        return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: email)
+        return NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: email) // returns a boolean value
     }
 }
 
